@@ -45,9 +45,10 @@ More screenshots are in [`marketing/final/screenshots`](marketing/final/screensh
 ## Hosted version & paid installation
 
 Need Searchzen hosted for you, installed on your own server, or customised? Contact
-**[EpiFive](https://www.epifive.com/services)**.
+**[EpiFive](https://www.epifive.com/services#custom-app-development)**.
 
-More open-source projects: https://www.epifive.com/open-source
+- Step-by-step guide: [Searchzen on the EpiFive blog](https://www.epifive.com/blog/searchzen-self-hosted-seo-rank-tracker)
+- More open-source projects: [epifive.com/open-source](https://www.epifive.com/open-source)
 
 ## Quick start
 
