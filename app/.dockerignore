@@ -1,0 +1,11 @@
+node_modules
+.next
+.git
+.vercel
+storage/*
+!storage/.gitkeep
+.env*
+!.env.example
+*.log
+npm-debug.log*
+public/sz-badge.js

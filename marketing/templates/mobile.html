@@ -1,0 +1,40 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  @font-face { font-family: "Bricolage"; src: url("../../app/src/fonts/bricolage-grotesque.woff2") format("woff2"); font-weight: 200 800; }
+  @font-face { font-family: "Instrument"; src: url("../../app/src/fonts/instrument-sans.woff2") format("woff2"); font-weight: 400 700; }
+  html, body { margin: 0; width: 1440px; height: 1000px; overflow: hidden; }
+  body { font-family: "Instrument", sans-serif; color: #1c1917;
+    background-color: #f2f9fb;
+    background-image:
+      radial-gradient(700px 420px at 50% 112%, rgba(14, 116, 144, .2), transparent 70%),
+      radial-gradient(520px 320px at 92% 0%, rgba(251, 191, 36, .18), transparent 70%),
+      linear-gradient(rgba(14,116,144,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(14,116,144,.055) 1px, transparent 1px);
+    background-size: auto, auto, 24px 24px, 24px 24px; }
+  .eyebrow { text-align: center; margin: 52px 0 0; font-size: 15px; font-weight: 600; color: #0e7490; letter-spacing: .01em; }
+  .eyebrow i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; margin-right: 8px; vertical-align: 1px; box-shadow: 0 0 0 3px rgba(34,197,94,.25); }
+  h1 { font-family: "Bricolage"; font-size: 50px; letter-spacing: -.025em; text-align: center; margin: 8px 0 8px; font-weight: 800; }
+  p { text-align: center; font-size: 20px; color: #5b6b70; margin: 0; }
+  .row { display: flex; justify-content: center; align-items: flex-start; gap: 64px; margin-top: 46px; }
+  .col { display: flex; flex-direction: column; align-items: center; }
+  .phone { width: 290px; height: 667px; border-radius: 44px; border: 11px solid #1c1917; overflow: hidden; background: #fff; box-shadow: 0 34px 70px rgba(8, 51, 68, .22), 0 0 0 1px rgba(0,0,0,.06); position: relative; }
+  .phone::before { content: ""; position: absolute; top: 9px; left: 50%; transform: translateX(-50%); width: 84px; height: 24px; border-radius: 14px; background: #1c1917; z-index: 2; }
+  .status { height: 40px; display: flex; align-items: center; justify-content: space-between; padding: 0 26px 0 30px; font-size: 14px; font-weight: 700; color: #1c1917; box-sizing: border-box; }
+  .status b { display: flex; gap: 5px; align-items: center; }
+  .status b i { display: block; width: 4px; border-radius: 1px; background: #1c1917; }
+  .status b u { display: block; width: 22px; height: 11px; border: 1.5px solid #1c1917; border-radius: 3px; position: relative; margin-left: 4px; }
+  .status b u::after { content: ""; position: absolute; inset: 1.5px 5px 1.5px 1.5px; background: #1c1917; border-radius: 1px; }
+  .phone img { width: 100%; display: block; }
+  .col:nth-child(2) { transform: translateY(-22px); }
+  .label { margin-top: 18px; font-size: 15px; font-weight: 600; color: #3f4b4f; background: #fff; border: 1px solid #d9e6ea; padding: 6px 14px; border-radius: 999px; }
+</style></head>
+<body>
+  <div class="eyebrow"><i></i>Responsive everywhere</div>
+  <h1>Rankings in your pocket</h1>
+  <p>The landing page, the SEO dashboard and every client report work beautifully on phones.</p>
+  <div class="row">
+    <div class="col"><div class="phone"><div class="status" style="background:#f2f8fa"><span>9:41</span><b><i style="height:5px"></i><i style="height:7px"></i><i style="height:9px"></i><i style="height:11px"></i><u></u></b></div><img src="../raw/m1-home.png"></div><span class="label">Your SaaS landing page</span></div>
+    <div class="col"><div class="phone"><div class="status" style="background:#fff"><span>9:41</span><b><i style="height:5px"></i><i style="height:7px"></i><i style="height:9px"></i><i style="height:11px"></i><u></u></b></div><img src="../raw/m2-overview.png"></div><span class="label">Project dashboard</span></div>
+    <div class="col"><div class="phone"><div class="status" style="background:#f5f6f8"><span>9:41</span><b><i style="height:5px"></i><i style="height:7px"></i><i style="height:9px"></i><i style="height:11px"></i><u></u></b></div><img src="../raw/m4-public-report.png"></div><span class="label">Client report</span></div>
+  </div>
+</body></html>

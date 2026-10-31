@@ -1,0 +1,54 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  @font-face { font-family: "Bricolage"; src: url("../../app/src/fonts/bricolage-grotesque.woff2") format("woff2"); font-weight: 200 800; }
+  @font-face { font-family: "Instrument"; src: url("../../app/src/fonts/instrument-sans.woff2") format("woff2"); font-weight: 400 700; }
+  @font-face { font-family: "JBMono"; src: url("../../app/src/fonts/jetbrains-mono.woff2") format("woff2"); font-weight: 400 800; }
+  html, body { margin: 0; width: 1440px; height: 790px; overflow: hidden; }
+  body {
+    position: relative; box-sizing: border-box; padding: 58px 80px; color: #fff; font-family: "Instrument", sans-serif;
+    background-color: #0b5d73;
+    background-image:
+      radial-gradient(820px 480px at 94% -14%, rgba(251, 191, 36, .22), transparent 60%),
+      radial-gradient(760px 560px at -6% 112%, rgba(34, 211, 238, .38), transparent 60%),
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(135deg, #0e7490, #083344);
+    background-size: auto, auto, 24px 24px, 24px 24px, auto;
+  }
+  .head { display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; margin-bottom: 34px; }
+  h1 { font-family: "Bricolage"; font-size: 50px; line-height: 1.02; letter-spacing: -.025em; margin: 0; font-weight: 800; }
+  h1 em { font-style: normal; color: #fbbf24; }
+  .sub { font-size: 20px; line-height: 1.45; color: rgba(255,255,255,.86); margin: 12px 0 0; max-width: 930px; }
+  .brand { display: flex; align-items: center; gap: 12px; font-family: "Bricolage"; font-size: 30px; font-weight: 800; letter-spacing: -.02em; flex-shrink: 0; margin-bottom: 6px; }
+  .brand svg { width: 46px; height: 46px; filter: drop-shadow(0 6px 14px rgba(0,0,0,.25)); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .card { background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.2); border-radius: 18px; padding: 21px 26px 23px; }
+  .top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .num { display: inline-flex; align-items: center; gap: 6px; background: #fbbf24; color: #3d2e00; font-weight: 700; font-size: 13.5px; padding: 3px 9px; border-radius: 7px; letter-spacing: .01em; white-space: nowrap; }
+  .num.mono { font-family: "JBMono"; font-size: 12.5px; font-weight: 700; }
+  .card h2 { font-family: "Bricolage"; font-size: 22px; margin: 0; letter-spacing: -.01em; font-weight: 700; }
+  .card p { margin: 0; font-size: 15.5px; line-height: 1.5; color: rgba(255,255,255,.87); }
+</style></head>
+<body>
+  <div class="head">
+    <div>
+      <h1>Run your own <em>SEO rank tracker &amp; site audit</em> platform</h1>
+      <p class="sub">Your customers track Google rankings, audit their sites, import Search Console data and send white-label reports to their clients. You sell the plans.</p>
+    </div>
+    <div class="brand">
+      <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="#fff"/><path d="m19.6 19.6 5 5" stroke="#fbbf24" stroke-width="3.4" stroke-linecap="round"/><circle cx="14" cy="14" r="7.2" fill="none" stroke="#0e7490" stroke-width="2.6"/><rect x="10.3" y="15.2" width="2.2" height="2.4" rx=".7" fill="#0e7490"/><rect x="12.9" y="13" width="2.2" height="4.6" rx=".7" fill="#0e7490"/><rect x="15.5" y="10.4" width="2.2" height="7.2" rx=".7" fill="#0e7490"/></svg>
+      Searchzen
+    </div>
+  </div>
+  <div class="grid">
+    <div class="card"><div class="top"><span class="num">#1</span><h2>Rank tracking</h2></div><p>Daily or weekly checks by country, language, city and device, depth up to 100. Tags, target URLs, CSV import, history and movers.</p></div>
+    <div class="card"><div class="top"><span class="num">4 APIs</span><h2>Official SERP data</h2></div><p>Serper.dev, SerpApi, DataForSEO or ValueSERP with your own key, usage per day and automatic pauses. Never scrapes Google.</p></div>
+    <div class="card"><div class="top"><span class="num">10</span><h2>SERP features &amp; rivals</h2></div><p>AI overviews, featured snippets, local packs and more. Up to 5 competitors with share of voice and visibility over time.</p></div>
+    <div class="card"><div class="top"><span class="num">57 checks</span><h2>Site audit</h2></div><p>A polite crawler (robots.txt, sitemaps) with a 0–100 health score, how-to-fix help, page explorer and new / fixed issues.</p></div>
+    <div class="card"><div class="top"><span class="num">Free</span><h2>Search Console import</h2></div><p>Google sign-in, read-only. Clicks, impressions, CTR and position with the top queries and pages, refreshed daily.</p></div>
+    <div class="card"><div class="top"><span class="num">PDF</span><h2>White-label reports</h2></div><p>Live share links with an optional password, print to PDF, weekly or monthly emails, the agency's logo and colour.</p></div>
+    <div class="card"><div class="top"><span class="num mono">sz-badge.js</span><h2>SEO health badge</h2></div><p>One script tag or an SVG image shows a site's latest health score anywhere. No cookies.</p></div>
+    <div class="card"><div class="top"><span class="num">6 channels</span><h2>Alerts &amp; REST API</h2></div><p>Rank and audit alerts by email, Slack, Discord, Teams, Telegram or signed webhook. API keys for projects, keywords and audits.</p></div>
+    <div class="card"><div class="top"><span class="num">SaaS</span><h2>Plans, payments, admin</h2></div><p>Keyword, project and audit limits. Stripe, PayPal, Razorpay, bank transfer. Web installer, multi-language with RTL.</p></div>
+  </div>
+</body></html>

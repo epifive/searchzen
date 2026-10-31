@@ -1,0 +1,1414 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Searchzen Documentation – SEO Rank Tracker &amp; Site Audit SaaS (Next.js)</title>
+<style>
+  :root { --primary:#0e7490; --primary-soft:#e0f4f8; --ink:#0f1c20; --muted:#4f6168; --line:#d6e6ea; --paper:#f6fafb; --surface:#fff; --marker:#16a34a; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  body { margin:0; font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; color:var(--ink); background:var(--paper); }
+  a { color:var(--primary); }
+  code, pre, kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .9em; }
+  code { background:var(--primary-soft); padding:.1em .35em; border-radius:4px; overflow-wrap:anywhere; }
+  pre { background:#0b252b; color:#e3f4f7; padding:16px; border-radius:10px; overflow-x:auto; line-height:1.5; }
+  pre code { background:none; padding:0; color:inherit; overflow-wrap:normal; }
+  .layout { display:grid; grid-template-columns: 270px 1fr; min-height:100vh; }
+  nav.toc { position:sticky; top:0; height:100vh; overflow-y:auto; background:var(--surface); border-right:1px solid var(--line); padding:24px 18px; }
+  nav.toc .brand { display:flex; align-items:center; gap:10px; font-weight:800; font-size:20px; margin-bottom:6px; }
+  nav.toc .brand span.mark { width:30px; height:30px; border-radius:9px; background:var(--primary); position:relative; display:inline-block; }
+  nav.toc .brand span.mark::before { content:""; position:absolute; left:6px; top:6px; width:12px; height:12px; border-radius:50%; border:2.5px solid #fff; }
+  nav.toc .brand span.mark::after { content:""; position:absolute; left:19px; top:19px; width:7px; height:2.5px; background:#fff; border-radius:2px; transform:rotate(45deg); transform-origin:left center; }
+  nav.toc .version { color:var(--muted); font-size:13px; margin:0 0 18px; }
+  nav.toc ol { list-style:none; margin:0; padding:0; }
+  nav.toc li a { display:block; padding:5px 10px; border-radius:6px; color:var(--ink); text-decoration:none; font-size:14px; }
+  nav.toc li a:hover { background:var(--primary-soft); }
+  nav.toc li.sub a { padding-left:24px; color:var(--muted); font-size:13px; }
+  main { padding:40px 56px 80px; max-width:1000px; min-width:0; }
+  h1 { font-size:40px; line-height:1.15; margin:0 0 12px; letter-spacing:-.02em; }
+  h2 { font-size:28px; margin:56px 0 12px; padding-top:8px; border-top:1px solid var(--line); letter-spacing:-.01em; }
+  h3 { font-size:20px; margin:32px 0 8px; }
+  h4 { font-size:17px; margin:22px 0 6px; }
+  p, li { max-width:78ch; }
+  .lead { font-size:19px; color:var(--muted); }
+  .card { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:18px 22px; margin:18px 0; }
+  .note { border-left:4px solid var(--primary); background:var(--primary-soft); padding:12px 16px; border-radius:6px; margin:16px 0; }
+  .warn { border-left:4px solid #c98a00; background:#fbf3dc; padding:12px 16px; border-radius:6px; margin:16px 0; }
+  .note p, .warn p { margin:.3em 0; }
+  table { border-collapse:collapse; width:100%; margin:14px 0; background:var(--surface); font-size:15px; }
+  th, td { border:1px solid var(--line); padding:8px 12px; text-align:left; vertical-align:top; }
+  th { background:#e9f4f7; }
+  tr.group th { background:#d4ecf1; font-size:14px; letter-spacing:.02em; }
+  td code { white-space:nowrap; }
+  td.wrap code { white-space:normal; }
+  ol.steps > li { margin-bottom:10px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:12px; }
+  .grid .card { margin:0; }
+  .tag { display:inline-block; background:var(--marker); color:#fff; font-size:12px; font-weight:700; padding:1px 7px; border-radius:5px; vertical-align:middle; }
+  .sev { display:inline-block; font-size:12px; font-weight:700; padding:1px 7px; border-radius:5px; color:#fff; }
+  .sev-critical { background:#b91c1c; }
+  .sev-warning { background:#b45309; }
+  .sev-notice { background:#64748b; }
+  .box { border:1px solid var(--line); border-radius:12px; background:var(--surface); padding:4px 22px 14px; margin:18px 0; }
+  .box h4 { margin-top:16px; }
+  .muted { color:var(--muted); }
+  .flow { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:14px 0; }
+  .flow span { background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:6px 12px; font-size:14px; font-weight:600; }
+  .flow b { color:var(--primary); }
+  .formula { background:var(--surface); border:1px solid var(--line); border-radius:10px; padding:12px 18px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:14px; line-height:1.8; overflow-x:auto; }
+  @media (max-width: 900px) { .layout { grid-template-columns: 1fr; } nav.toc { position:static; height:auto; } main { padding:24px 20px 60px; } td code { white-space:normal; } }
+  @media print { nav.toc { display:none; } .layout { display:block; } main { max-width:none; padding:0; } }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="toc" aria-label="Contents">
+  <div class="brand"><span class="mark"></span>Searchzen</div>
+  <p class="version">Documentation · version 1.0.0</p>
+  <ol>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#requirements">Requirements</a></li>
+    <li><a href="#package">Repository contents</a></li>
+    <li><a href="#install">Installation</a></li>
+    <li class="sub"><a href="#install-cpanel">cPanel / shared hosting</a></li>
+    <li class="sub"><a href="#install-vps">VPS (PM2 + Nginx)</a></li>
+    <li class="sub"><a href="#install-docker">Docker</a></li>
+    <li class="sub"><a href="#install-vercel">Vercel + TiDB Cloud</a></li>
+    <li class="sub"><a href="#install-local">Local computer</a></li>
+    <li class="sub"><a href="#installer">Web installer</a></li>
+    <li class="sub"><a href="#first-steps">First steps</a></li>
+    <li><a href="#scheduling">Background jobs</a></li>
+    <li class="sub"><a href="#sched-how">The jobs</a></li>
+    <li class="sub"><a href="#sched-secret">The cron secret</a></li>
+    <li class="sub"><a href="#sched-lazy">Lazy mode</a></li>
+    <li class="sub"><a href="#sched-cron">Cron URL</a></li>
+    <li class="sub"><a href="#sched-worker">Worker</a></li>
+    <li class="sub"><a href="#sched-vercel">Vercel &amp; serverless</a></li>
+    <li class="sub"><a href="#sched-which">Which one to use</a></li>
+    <li><a href="#serp">SERP providers</a></li>
+    <li class="sub"><a href="#serp-compare">Compare the providers</a></li>
+    <li class="sub"><a href="#serp-signup">Sign up &amp; get a key</a></li>
+    <li class="sub"><a href="#serp-keys">Where to paste keys</a></li>
+    <li class="sub"><a href="#serp-depth">Depth &amp; cost</a></li>
+    <li class="sub"><a href="#serp-run">Run limits</a></li>
+    <li class="sub"><a href="#serp-test">Test connection</a></li>
+    <li class="sub"><a href="#serp-pause">Pause on errors</a></li>
+    <li class="sub"><a href="#serp-simulated">Simulated provider</a></li>
+    <li><a href="#gsc-setup">Google Search Console setup</a></li>
+    <li class="sub"><a href="#gsc-project">Cloud project &amp; API</a></li>
+    <li class="sub"><a href="#gsc-consent">OAuth consent screen</a></li>
+    <li class="sub"><a href="#gsc-verify">Testing, production &amp; verification</a></li>
+    <li class="sub"><a href="#gsc-client">OAuth client &amp; redirect URI</a></li>
+    <li class="sub"><a href="#gsc-secret">APP_SECRET</a></li>
+    <li><a href="#guide">User guide</a></li>
+    <li class="sub"><a href="#g-projects">Projects</a></li>
+    <li class="sub"><a href="#g-keywords">Keywords</a></li>
+    <li class="sub"><a href="#g-rankings">Rankings</a></li>
+    <li class="sub"><a href="#g-competitors">Competitors &amp; SERP features</a></li>
+    <li class="sub"><a href="#g-alerts">Alerts &amp; channels</a></li>
+    <li class="sub"><a href="#g-audit">Site audit</a></li>
+    <li class="sub"><a href="#g-checks">Audit checks</a></li>
+    <li class="sub"><a href="#g-score">Health score</a></li>
+    <li class="sub"><a href="#g-gsc">Search Console tab</a></li>
+    <li class="sub"><a href="#g-reports">Client reports</a></li>
+    <li class="sub"><a href="#g-badge">SEO health badge</a></li>
+    <li class="sub"><a href="#g-digest">Weekly digest</a></li>
+    <li><a href="#api">REST API</a></li>
+    <li><a href="#admin">Admin panel</a></li>
+    <li class="sub"><a href="#admin-plans">Plans &amp; limits</a></li>
+    <li class="sub"><a href="#admin-settings">Settings</a></li>
+    <li class="sub"><a href="#admin-system">System &amp; scheduler</a></li>
+    <li><a href="#payments">Payment gateways</a></li>
+    <li><a href="#email">Email (SMTP)</a></li>
+    <li><a href="#i18n">Languages &amp; RTL</a></li>
+    <li><a href="#seo">SEO</a></li>
+    <li><a href="#privacy">Privacy</a></li>
+    <li><a href="#performance">Performance &amp; data retention</a></li>
+    <li><a href="#customize">Customisation</a></li>
+    <li><a href="#demo">Demo mode</a></li>
+    <li><a href="#update">Updating</a></li>
+    <li><a href="#env">Environment variables</a></li>
+    <li><a href="#troubleshooting">Troubleshooting</a></li>
+    <li><a href="#credits">Credits</a></li>
+    <li><a href="#changelog">Changelog</a></li>
+    <li><a href="#support">Support</a></li>
+  </ol>
+</nav>
+
+<main>
+<h1>Searchzen</h1>
+<p class="lead">SEO rank tracker and site audit software as a service, built with Next.js 16, React 19 and Tailwind CSS 4. Your customers track their Google positions by country, city, language and device, crawl their websites for technical SEO problems, connect Google Search Console and share white-label reports with their clients. This guide takes you from a fresh clone to a live platform with paying customers.</p>
+<div class="card">
+  <strong>Quick start:</strong> upload the <code>app</code> folder, run <code>npm install</code> and <code>npm run build</code>, start the app, then open your domain in a browser. The web installer does the rest. Then read <a href="#scheduling">Background jobs</a> (rank checks and audits run in the background) and <a href="#serp">SERP providers</a>: <strong>without a SERP provider no rankings are checked</strong>.
+</div>
+
+<!-- ───────────────────────────── Introduction ───────────────────────────── -->
+<h2 id="introduction">Introduction</h2>
+<p>Searchzen lets you run your own SEO platform, in the style of SE Ranking, Serpstat's rank tracker or Ahrefs' site audit. Your customers sign up, add their websites as <strong>projects</strong> and get four tools for each one:</p>
+<ul>
+  <li><strong>Rank tracking.</strong> They add keywords (one by one, pasted, from a CSV file or through the REST API) with a country, language, optional city and a device. Searchzen checks every keyword daily or weekly and shows the position, the ranking page, the SERP features on the results page, their competitors' positions, a visibility score and the history. Alerts tell them when a keyword enters or leaves the top 3/10/100, moves a lot, or when the page they want to rank stops ranking.</li>
+  <li><strong>Site audit.</strong> A polite crawler reads the site like a search engine (it obeys robots.txt), runs <strong>57 checks</strong> (broken pages and links, redirects, titles, descriptions, headings, canonicals, hreflang, sitemaps, HTTPS, speed, structured data, social tags…) and computes a <strong>health score</strong> from 0 to 100, with the change since the previous audit.</li>
+  <li><strong>Google Search Console.</strong> With one click (Google sign-in) customers import clicks, impressions, CTR and average position, with their top queries and pages.</li>
+  <li><strong>Client reports.</strong> A read-only report link (optionally password-protected) with rankings, the audit and Search Console data, saved as PDF from the browser, emailed weekly or monthly, with the agency's own logo and colour on white-label plans, plus an embeddable <strong>SEO health badge</strong>.</li>
+</ul>
+<p>Rankings come from a <strong>SERP data provider</strong> that you, the administrator, choose and pay for: Serper.dev, SerpApi, DataForSEO or ValueSERP. Searchzen <strong>never scrapes Google</strong> itself. You earn money with <strong>paid plans</strong> that limit projects, tracked keywords, the check frequency, audit size and count, and unlock Search Console, the REST API and white-label reports. Your customers pay through Stripe (automatic renewal), PayPal, Razorpay or bank transfer.</p>
+<div class="note">Words used in this guide: <strong>you</strong> or <strong>the administrator</strong> run the platform. <strong>Customers</strong> (users) sign up on your platform and create projects. <strong>Clients</strong> are your customers' own clients who receive reports. In the examples your platform lives at <code>https://seo.example.com</code> and a customer's website is <code>example-shop.com</code>.</div>
+<div class="warn"><strong>Rank data costs money.</strong> Every keyword check is one or more paid requests to your SERP provider. Read <a href="#serp-depth">Depth &amp; cost</a> before you set plan prices and keyword limits.</div>
+
+<!-- ───────────────────────────── Features ───────────────────────────── -->
+<h2 id="features">Features</h2>
+<div class="grid">
+  <div class="card"><strong>Rank tracker</strong><br>Daily or weekly checks per keyword: country, language, city or region, desktop or mobile, tags, target URL. Depth 10, 20, 50 or 100 results.</div>
+  <div class="card"><strong>Four SERP providers</strong><br>Serper.dev, SerpApi, DataForSEO and ValueSERP, with a test button, usage per day and automatic pauses on wrong keys or empty credits. Plus a Simulated provider for demos.</div>
+  <div class="card"><strong>Rank insights</strong><br>Average position, visibility score, top 3/10/100, movers, position history, ranking-URL changes, 30-day trend lines, latest results page, CSV export.</div>
+  <div class="card"><strong>Competitors &amp; SERP features</strong><br>Up to 5 competitor domains per project, share of voice and visibility over time; featured snippets, local pack, AI overview, People also ask and more.</div>
+  <div class="card"><strong>Site audit</strong><br>A resumable crawler that obeys robots.txt and crawl-delay, reads sitemaps, and runs 57 checks with critical/warning/notice severity, a health score and new/fixed issues.</div>
+  <div class="card"><strong>Google Search Console</strong><br>OAuth sign-in (read-only), 90 days of history on connect, daily refresh, clicks, impressions, CTR, position, top queries and pages, "Track" a query in one click.</div>
+  <div class="card"><strong>Client reports</strong><br>Share link with optional password, print to PDF, weekly or monthly report emails, white-label logo, colour and company name.</div>
+  <div class="card"><strong>SEO health badge</strong><br>A tiny embeddable script (or an SVG image) that shows the latest health score on any website.</div>
+  <div class="card"><strong>Alerts</strong><br>Rank and audit alerts by email, Slack, Discord, Microsoft Teams, Telegram or a signed webhook. Weekly digest email.</div>
+  <div class="card"><strong>REST API</strong><br>Projects, keywords (add, list, history, check now) and audits (start, status, issues) with API keys.</div>
+  <div class="card"><strong>Plans &amp; billing</strong><br>Project, keyword, frequency, audit-page and audits-per-month limits; Search Console, API, white-label and branding switches. Stripe, PayPal, Razorpay, bank transfer.</div>
+  <div class="card"><strong>Admin panel</strong><br>Users, plans, payments, pages, blog, languages, messages, settings, rank tracking settings, scheduler health.</div>
+  <div class="card"><strong>Multi-language &amp; RTL</strong><br>Translate the public site, the dashboard, reports and emails. Right-to-left languages supported; Arabic and Hindi packs included.</div>
+  <div class="card"><strong>Easy hosting</strong><br>Web installer, MySQL or SQLite, cPanel, VPS with PM2, Docker, Vercel with cloud MySQL.</div>
+</div>
+
+<!-- ───────────────────────────── Requirements ───────────────────────────── -->
+<h2 id="requirements">Requirements</h2>
+<table>
+  <tr><th>Item</th><th>Requirement</th></tr>
+  <tr><td>Node.js</td><td>20.9 or newer (22 LTS recommended). Node.js <strong>22.13+</strong> is needed only for the SQLite database option.</td></tr>
+  <tr><td>Database</td><td>MySQL 5.7+ / MariaDB 10.3+ (recommended for production), <em>or</em> the built-in SQLite option (no database server needed; fine for testing and small platforms).</td></tr>
+  <tr><td>Hosting</td><td>Any host that runs Node.js apps: a VPS, cPanel with “Setup Node.js App”, Plesk, Docker, Railway, Render, Vercel, etc. A VPS is best: it can run the <a href="#sched-worker">worker</a>, which keeps rank checks and audits moving.</td></tr>
+  <tr><td>A SERP data provider</td><td>An account with Serper.dev, SerpApi, DataForSEO or ValueSERP (paid per request). See <a href="#serp">SERP providers</a>.</td></tr>
+  <tr><td>A way to run background jobs</td><td>A cron job that opens a URL every minute, the worker process, or lazy mode (default, needs regular visits). Rank checks, audit crawling, Search Console imports, report emails and the digest only run when jobs run. See <a href="#scheduling">Background jobs</a>.</td></tr>
+  <tr><td>HTTPS</td><td>Required in production: Google sign-in for Search Console needs an <code>https://</code> redirect address, and the SEO health badge is loaded by customers' HTTPS websites. Use a free Let's Encrypt certificate.</td></tr>
+  <tr><td>Email (SMTP)</td><td>Strongly recommended: password resets, email alerts, scheduled client reports and the weekly digest need it. See <a href="#email">Email</a>.</td></tr>
+  <tr><td>Outbound internet</td><td>HTTPS to your SERP provider (<code>google.serper.dev</code>, <code>serpapi.com</code>, <code>api.dataforseo.com</code> or <code>api.valueserp.com</code>), to Google (<code>accounts.google.com</code>, <code>oauth2.googleapis.com</code>, <code>www.googleapis.com</code>), to the websites your customers audit (ports 80, 443, 8080 and 8443), and to Slack, Discord, Teams, Telegram or webhook URLs for alerts; SMTP (587 or 465).</td></tr>
+  <tr><td>Memory</td><td>At least 1 GB RAM to build (<code>npm run build</code>). Running the platform needs about 250–500 MB (more while large audits are analysed), plus about 50 MB for the worker.</td></tr>
+  <tr><td>Writable folder</td><td>The <code>storage</code> folder must be writable (configuration, the generated app secret, SQLite database, uploaded logos).</td></tr>
+</table>
+<div class="note">Static-only hosting (plain HTML hosting, GitHub Pages) cannot run Searchzen: rank checks, the crawler, Google sign-in, accounts and payments need a Node.js server.</div>
+
+<!-- ───────────────────────────── Package ───────────────────────────── -->
+<h2 id="package">Repository contents</h2>
+<pre><code>searchzen/
+├── documentation/            This guide
+├── marketing/                Screenshot scripts and the final screenshots
+└── app/                      The application source code
+    ├── src/
+    │   ├── app/              Pages, admin panel, customer dashboard, shared reports (/r), API routes
+    │   ├── components/       Shared UI, dashboard, report and public site components
+    │   ├── seo/              The contract: types, validation, visibility and health score formulas
+    │   ├── badge/            Source of the SEO health badge script sz-badge.js
+    │   ├── lib/              Server code
+    │   │   ├── serp/         SERP providers (Serper.dev, SerpApi, DataForSEO, ValueSERP, Simulated)
+    │   │   ├── rank/         Rank checks, alert rules, history and KPIs, CSV import/export
+    │   │   ├── audit/        Crawler, robots.txt, sitemaps, HTML parser, the 57 checks, analysis
+    │   │   ├── gsc/          Google OAuth and Search Console import
+    │   │   ├── reports/      Share links, report data and emails, schedules, digest, badge
+    │   │   ├── jobs/         Background jobs (rank checks, audits, imports, reports, digest…)
+    │   │   └── alerts/       Alert channels (email, webhook, Slack, Discord, Teams, Telegram)
+    │   └── fonts/            Bundled fonts and their licences
+    ├── scripts/
+    │   ├── build-widget.mjs  Builds public/sz-badge.js (runs automatically with npm run build)
+    │   └── worker.mjs        The background worker (npm run worker)
+    ├── languages/            Ready-made Arabic (ar.json) and Hindi (hi.json) language packs
+    ├── public/               Public static files (sz-badge.js is generated here)
+    ├── storage/              Created data: config.json, SQLite database, uploads
+    ├── server.js             Start file for cPanel / Passenger / PM2
+    ├── ecosystem.config.cjs  PM2 configuration (app + worker)
+    ├── Dockerfile, docker-compose.yml, .dockerignore
+    ├── .env.example          Optional environment variables
+    ├── README.md             Short developer notes
+    └── package.json</code></pre>
+<div class="note"><code>public/sz-badge.js</code>, the badge script your customers embed, is <strong>not</strong> in the repository. It is built from <code>src/badge</code> every time you run <code>npm run build</code> (or <code>npm run dev</code>). If you ever see a 404 for <code>/sz-badge.js</code>, run <code>npm run build</code> again and restart.</div>
+
+<!-- ───────────────────────────── Install ───────────────────────────── -->
+<h2 id="install">Installation</h2>
+<p>Pick the guide that matches your hosting. Every method ends with the <a href="#installer">web installer</a>, and every method needs a way to run background jobs: read <a href="#scheduling">Background jobs</a> right after installing, then choose a <a href="#serp">SERP provider</a>.</p>
+<div class="note">Install Searchzen on its own domain or subdomain, for example <code>https://seo.example.com</code>. Shared report links, the badge snippet on customers' websites, the Google sign-in redirect address and the cron URL all contain this address, so changing it later means customers must update their badge snippets and you must update the redirect URI in Google Cloud.</div>
+
+<h3 id="install-cpanel">cPanel / shared hosting (Setup Node.js App)</h3>
+<ol class="steps">
+  <li>In cPanel open <strong>MySQL® Databases</strong>. Create a database and a user, then add the user to the database with <em>All privileges</em>. Write down the database name, username and password.</li>
+  <li>Create the subdomain (e.g. <code>seo.example.com</code>) in <strong>Domains</strong> and turn on <strong>SSL/TLS Status → Run AutoSSL</strong> so it has HTTPS.</li>
+  <li>Open <strong>File Manager</strong> and upload <code>searchzen.zip</code> (the <code>app</code> folder of the repository, renamed to <code>searchzen</code> and zipped) to your home folder, e.g. <code>/home/youruser/searchzen</code>, and extract it. Do <em>not</em> put it inside <code>public_html</code>.</li>
+  <li>Open <strong>Setup Node.js App</strong> → <strong>Create Application</strong>:
+    <ul>
+      <li>Node.js version: the newest available (22.x recommended)</li>
+      <li>Application mode: <code>Production</code></li>
+      <li>Application root: <code>searchzen</code></li>
+      <li>Application URL: your domain or subdomain</li>
+      <li>Application startup file: <code>server.js</code></li>
+    </ul>
+    Click <strong>Create</strong>.</li>
+  <li>Click <strong>Run NPM Install</strong> and wait until it finishes.</li>
+  <li>Copy the command shown at the top of the page (it looks like <code>source /home/youruser/nodevenv/searchzen/22/bin/activate &amp;&amp; cd /home/youruser/searchzen</code>). Open <strong>Terminal</strong> in cPanel, paste it, then run:
+    <pre><code>npm run build</code></pre>
+    The build takes 1–4 minutes. It first prints <code>[badge] public/sz-badge.js … B gzip</code> (the badge script), then builds the app.</li>
+  <li>Back in Setup Node.js App, click <strong>Restart</strong>. Open your domain: you will see the installer.</li>
+  <li>After installing, add the <strong>cron job</strong> from Admin → System (see <a href="#sched-cron">Cron URL</a>). On cPanel this is strongly recommended: Passenger stops idle apps, and lazy mode only runs while there is activity, so keyword checks and audits would stall at night.</li>
+</ol>
+<p><code>server.js</code> starts the built Next.js app, which serves everything: pages, shared reports, the API, the badge and the files in <code>public</code>. You don't need to copy anything into <code>public_html</code>.</p>
+<div class="warn">If the build stops with “JavaScript heap out of memory” your plan limits memory. Build on your own computer instead (<code>npm install &amp;&amp; npm run build</code>), then upload the whole folder <em>including</em> the <code>.next</code> folder and <code>public/sz-badge.js</code>, and only run “Run NPM Install” + “Restart” on the server.</div>
+<div class="note">Shared hosting often limits how long a request may run and how many processes you get. Site audits are crawled in short slices (see <a href="#g-audit">How the crawler works</a>), so they work there too, just more slowly than on a VPS.</div>
+
+<h3 id="install-vps">VPS (Ubuntu) with PM2 and Nginx</h3>
+<ol class="steps">
+  <li>Install Node.js 22, Nginx and PM2:
+<pre><code>curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+sudo apt install -y nodejs nginx
+sudo npm install -g pm2</code></pre></li>
+  <li>Install MySQL (or use SQLite and skip this step):
+<pre><code>sudo apt install -y mysql-server
+sudo mysql -e "CREATE DATABASE searchzen CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'searchzen'@'localhost' IDENTIFIED BY 'choose-a-strong-password';
+GRANT ALL PRIVILEGES ON searchzen.* TO 'searchzen'@'localhost'; FLUSH PRIVILEGES;"</code></pre></li>
+  <li>Upload the <code>app</code> folder to <code>/var/www/searchzen</code>, then build:
+<pre><code>cd /var/www/searchzen
+npm ci
+npm run build</code></pre></li>
+  <li>Choose a <strong>cron secret</strong> and start the app <em>and</em> the worker with PM2. <code>ecosystem.config.cjs</code> starts two processes: <code>searchzen</code> (the web app) and <code>searchzen-worker</code> (runs the background jobs every 15 seconds). Both get the same <code>CRON_SECRET</code>:
+<pre><code>export CRON_SECRET="$(openssl rand -hex 24)"
+echo "$CRON_SECRET"          # keep a copy
+pm2 start ecosystem.config.cjs
+pm2 save &amp;&amp; pm2 startup</code></pre>
+    <div class="warn"><p><strong>Always set your own <code>CRON_SECRET</code> before <code>pm2 start</code>.</strong> Without it the worker can't run jobs (PM2 prints a warning and the worker exits), and a <code>CRON_SECRET</code> line in <code>.env.local</code> is only seen by the worker, not by the app. Export the variable before <code>pm2 start</code> (as above) or write your secret into <code>ecosystem.config.cjs</code>. Use at least 12 random characters: the app ignores shorter values and the example value <code>change-me-to-a-long-random-string</code>. After changing it run <code>pm2 restart ecosystem.config.cjs --update-env</code>.</p></div></li>
+  <li>Create <code>/etc/nginx/sites-available/searchzen</code>:
+<pre><code>server {
+    listen 80;
+    server_name seo.example.com;
+    client_max_body_size 10m;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_read_timeout 90s;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+    }
+}</code></pre>
+<code>X-Forwarded-For</code> is used for rate limits (sign-in, registration, the cron URL, the REST API, the badge). <code>proxy_read_timeout 90s</code> leaves room for “Check now” and the cron URL, which can work for up to 45 seconds. Enable the site and add a free SSL certificate:
+<pre><code>sudo ln -s /etc/nginx/sites-available/searchzen /etc/nginx/sites-enabled/
+sudo nginx -t &amp;&amp; sudo systemctl reload nginx
+sudo apt install -y certbot python3-certbot-nginx
+sudo certbot --nginx -d seo.example.com</code></pre></li>
+  <li>Open <code>https://seo.example.com</code> to run the installer. Afterwards, Admin → System → Scheduler should show <em>Running</em> with the source <code>worker</code> within a minute.</li>
+</ol>
+<div class="note">Keep <code>instances: 1</code> for the web app in <code>ecosystem.config.cjs</code>: rate limits are kept per process. If you ever run several app servers, set the same <a href="#gsc-secret"><code>APP_SECRET</code></a> and <code>NEXT_SERVER_ACTIONS_ENCRYPTION_KEY</code> on all of them. The worker calls <code>http://localhost:3000</code> by default; set <code>WORKER_URL</code> if the app listens elsewhere.</div>
+
+<h3 id="install-docker">Docker</h3>
+<p>The <code>app</code> folder includes a <code>Dockerfile</code> and a <code>docker-compose.yml</code> with three services: <code>app</code> (the web app), <code>worker</code> (runs background jobs every 15 seconds) and <code>db</code> (MySQL 8.4). First create a file named <code>.env</code> next to <code>docker-compose.yml</code> with your own secret:</p>
+<pre><code>CRON_SECRET=paste-a-long-random-string-here</code></pre>
+<p>Then start everything:</p>
+<pre><code>cd searchzen
+docker compose up -d --build</code></pre>
+<p>Open <code>http://your-server:3000</code>. In the installer choose MySQL with host <code>db</code>, port <code>3306</code>, database <code>searchzen</code>, user <code>searchzen</code>, password <code>searchzen</code> (change these and <code>MYSQL_ROOT_PASSWORD</code> in <code>docker-compose.yml</code> first). The <code>storage</code> folder (configuration, the generated app secret and uploads) is kept in a Docker volume. Put Nginx, Caddy or Traefik with HTTPS in front of port 3000, and make sure it sends <code>X-Forwarded-For</code>.</p>
+<div class="warn"><code>docker-compose.yml</code> refuses to start until <code>CRON_SECRET</code> is set in the <code>.env</code> file next to it (at least 12 random characters). The included <code>.dockerignore</code> keeps local <code>node_modules</code>, <code>.next</code> and <code>storage</code> folders out of the image.</div>
+<p>Without Compose:</p>
+<pre><code>docker build -t searchzen .
+docker network create searchzen-net
+docker run -d --name searchzen --network searchzen-net -p 3000:3000 \
+  -e CRON_SECRET=your-secret -v searchzen-storage:/app/storage searchzen
+docker run -d --name searchzen-worker --network searchzen-net \
+  -e WORKER_URL=http://searchzen:3000 -e CRON_SECRET=your-secret searchzen node scripts/worker.mjs</code></pre>
+
+<h3 id="install-vercel">Vercel (with TiDB Cloud or another cloud MySQL)</h3>
+<p>Vercel has no permanent disk, so the web installer and SQLite can't be used there. Instead, Searchzen is configured with environment variables and a cloud MySQL-compatible database such as <strong>TiDB Cloud Serverless</strong> (free tier), Aiven or PlanetScale.</p>
+<ol class="steps">
+  <li>Create a database. In TiDB Cloud: create a <em>Serverless</em> cluster in the region closest to your Vercel functions, open <strong>Connect</strong>, generate a password and note the host, port (4000), user and password. In the SQL editor run <code>CREATE DATABASE searchzen;</code></li>
+  <li>Fork this repository on GitHub (or push your copy to your own repository).</li>
+  <li>In Vercel click <strong>Add New → Project</strong>, import the repository and set <strong>Root Directory</strong> to <code>app</code> (the folder that contains <code>package.json</code>). Keep the default build command (<code>npm run build</code>): it also builds <code>sz-badge.js</code>.</li>
+  <li>Add these <strong>Environment Variables</strong>:
+<pre><code>DB_DRIVER=mysql
+DB_HOST=gateway01.ap-southeast-1.prod.aws.tidbcloud.com
+DB_PORT=4000
+DB_USER=xxxxxxxx.root
+DB_PASSWORD=your-password
+DB_NAME=searchzen
+DB_SSL=true
+APP_INSTALLED=true
+ADMIN_EMAIL=you@example.com
+ADMIN_PASSWORD=a-strong-password
+ADMIN_NAME=Your Name
+SITE_URL=https://seo.example.com
+CRON_SECRET=a-long-random-string
+APP_SECRET=another-long-random-string</code></pre>
+    Instead of the <code>DB_*</code> variables you can set one <code>DATABASE_URL=mysql://user:password@host:4000/searchzen?ssl=true</code>. Optionally add your SERP key here too (e.g. <code>SERPER_API_KEY</code> and <code>SERP_PROVIDER=serper</code>, see <a href="#serp-keys">Where to paste keys</a>).</li>
+  <li>Click <strong>Deploy</strong>. Tables are created automatically on the first visit and the administrator account is created from <code>ADMIN_EMAIL</code> / <code>ADMIN_PASSWORD</code>.</li>
+  <li>Add your domain in <strong>Settings → Domains</strong>, and set the same address in Admin → Settings → General → <em>Site URL</em>.</li>
+  <li>In Vercel open <strong>Settings → Functions</strong> and choose the region closest to your database.</li>
+  <li><strong>Set up the scheduler</strong> as described in <a href="#sched-vercel">Vercel &amp; serverless</a>. This step is not optional on Vercel: without it, keywords are checked and audits crawled only while someone uses the site.</li>
+</ol>
+<div class="warn">
+  <p>Vercel is fine for a demo or a small platform. Keep in mind:</p>
+  <ul>
+    <li><strong>Set <code>APP_SECRET</code></strong> (16+ random characters). It encrypts the Google Search Console tokens; without it the app falls back to a secret stored in the database, which works, but an explicit value is safer and survives a database move. See <a href="#gsc-secret">APP_SECRET</a>.</li>
+    <li>There is no worker process, so background jobs depend on an external cron service. Vercel Hobby cron runs only once a day.</li>
+    <li>Uploaded files (logos) are not kept (no permanent disk). Paste image URLs instead of uploading.</li>
+    <li>Rate limits are kept per serverless instance.</li>
+  </ul>
+</div>
+
+<h3 id="install-local">Local computer (for testing or customising)</h3>
+<pre><code>cd searchzen
+npm install
+npm run dev</code></pre>
+<p>Open <code>http://localhost:3000</code> and choose <strong>SQLite</strong> in the installer. Lazy mode is on by default, so background jobs run while you click around. To run them without visiting pages, start the worker in a second terminal (copy the secret from Admin → System → Scheduler):</p>
+<pre><code>CRON_SECRET=the-secret-from-admin npm run worker</code></pre>
+<p>On Windows PowerShell: <code>$env:CRON_SECRET="the-secret"; npm run worker</code>.</p>
+<div class="note">To try rank tracking without paying for a SERP provider, switch on <em>Allow the Simulated provider</em> in Admin → Settings → Rank tracking and choose <em>Simulated</em>. It produces realistic but <strong>fake</strong> positions (see <a href="#serp-simulated">Simulated provider</a>). Switch to a real provider before customers sign up. The site audit crawler refuses local and private addresses (<code>localhost</code>, <code>127.0.0.1</code>, <code>192.168.x.x</code>…), so audit a public website even when testing locally.</div>
+
+<h3 id="installer">Web installer</h3>
+<ol class="steps">
+  <li><strong>Server requirements</strong> – checks the Node.js version and that <code>storage</code> is writable.</li>
+  <li><strong>Database</strong> – choose MySQL/MariaDB (host, port, database, user, password, and <em>Use SSL</em> for cloud databases such as TiDB Cloud, Aiven or DigitalOcean) or SQLite. Click <em>Test connection</em>, then continue.</li>
+  <li><strong>Site and administrator</strong> – enter your platform name, the full site URL (e.g. <code>https://seo.example.com</code>) and the administrator account. Click <em>Install now</em>.</li>
+</ol>
+<p>The installer creates all tables and indexes, the three default plans (Free, Pro, Agency), the default content pages (such as the Privacy policy and Terms of service) and starter blog posts. It writes <code>storage/config.json</code> and locks itself (<code>storage/installed.lock</code>). Sign in at <code>/login</code>. The admin panel is at <code>/admin</code>, the customer dashboard at <code>/dashboard</code>, shared reports at <code>/r/&lt;token&gt;</code>.</p>
+<div class="note">To run the installer again (e.g. to switch databases), delete <code>storage/installed.lock</code> and <code>storage/config.json</code> and restart the app. Existing data in the old database is not deleted. <code>config.json</code> also holds the generated app secret: if you delete it without setting <code>APP_SECRET</code>, customers must reconnect Google Search Console.</div>
+
+<h3 id="first-steps">First steps after installing</h3>
+<p>The admin dashboard shows a <em>Finish setting up</em> checklist. In short:</p>
+<ol class="steps">
+  <li><strong>Settings → General</strong>: check the <em>Site URL</em>. It must be your public <code>https://</code> address: share links, the badge snippet, the Google redirect URI, links in emails, the crawler's user agent and the cron URL are built from it. Add your brand name and logo.</li>
+  <li><strong>Admin → System → Scheduler</strong>: set up the cron URL or the worker (see <a href="#scheduling">Background jobs</a>) and check that the badge says <em>Running</em>.</li>
+  <li><strong>Settings → Rank tracking</strong>: choose a SERP provider, paste its API key, pick the depth and click <em>Test connection</em> (see <a href="#serp">SERP providers</a>).</li>
+  <li><strong>Settings → Email</strong>: configure SMTP. Password resets, email alerts, scheduled reports and the weekly digest need it.</li>
+  <li><strong>Settings → Google</strong> (optional): add a Google OAuth client so customers can connect Search Console (see <a href="#gsc-setup">Google Search Console setup</a>).</li>
+  <li><strong>Plans</strong>: adjust prices and limits to your SERP costs. <strong>Settings → Payments</strong>: connect at least one payment gateway.</li>
+  <li>Open <strong>/dashboard</strong> and create a project for your own website to see everything working.</li>
+</ol>
+
+<!-- ───────────────────────────── Scheduling ───────────────────────────── -->
+<h2 id="scheduling">Background jobs &amp; scheduling</h2>
+<p>Pages, the API and shared reports answer immediately; that never depends on the scheduler. But the real work of an SEO platform happens in the background, and something must start it. <strong>Read this chapter before you invite customers:</strong> without background jobs, keywords are never checked, audits stay at “queued”, and Search Console data is not imported.</p>
+
+<h3 id="sched-how">The jobs</h3>
+<p>A <strong>tick</strong> runs these jobs one after the other, within a time budget. Each job does a small slice of work and remembers when it should run again, so ticks every 15 seconds are cheap. Whatever doesn't fit is picked up by the next tick. A lock in the database makes sure two ticks never run at the same time.</p>
+<table>
+  <tr><th>Job</th><th>What it does</th><th>How often</th></tr>
+  <tr><td><code>rank-checks</code></td><td>Checks the keywords that are due (active keyword, active project, active owner) with the SERP provider: up to <em>Checks per run</em> keywords (default 40), <em>Parallel requests</em> at a time (default 3), within <em>Time per run</em> (default 20 s). Saves the day's position, the competitors' positions, the SERP features and the top 20 results, then sends alerts. Stops and pauses all checks after a wrong key or empty credits (see <a href="#serp-pause">Pause on errors</a>).</td><td>Every tick</td></tr>
+  <tr><td><code>audits</code></td><td>Starts scheduled audits (projects set to weekly or monthly audits; checked every 15 minutes), then crawls and analyses running audits, oldest first, at most 20 seconds per audit per tick so several audits share the time.</td><td>Every tick</td></tr>
+  <tr><td><code>gsc-import</code></td><td>Imports Search Console data: the 90-day history of newly connected properties (10 days per step), then a daily refresh of the last 3 days. Deletes rows older than about 16 months once a day.</td><td>Every tick while a history import runs, otherwise every 10 minutes</td></tr>
+  <tr><td><code>reports</code></td><td>Sends scheduled client report emails that are due (weekly on Mondays, monthly on the 1st, at 07:00 UTC), up to 20 per run.</td><td>Every 5 minutes</td></tr>
+  <tr><td><code>digest</code></td><td>Sends the weekly digest from Monday 07:00 UTC, once per account and week, in batches of 25. Waits while SMTP isn't configured.</td><td>Every 30 minutes</td></tr>
+  <tr><td><code>housekeeping</code></td><td>Deletes expired sessions and password reset links, alert log entries older than 90 days and saved results pages (SERP snapshots) older than 30 days. Rankings themselves are kept.</td><td>Every hour</td></tr>
+</table>
+<div class="warn"><strong>Without ticks</strong> no keyword is checked (the rankings stay “Pending”), audits stay queued, Search Console data isn't imported and no report emails or digests are sent. Note: while someone keeps the audit page open, the page itself drives that audit forward, so audits can seem to “work” during testing even without a scheduler.</div>
+<p>There are four ways to start ticks:</p>
+<table>
+  <tr><th>Method</th><th>How often</th><th>Best for</th></tr>
+  <tr><td><strong>Lazy mode</strong> (on by default)</td><td>When the platform serves one of its pages and no tick ran for a minute. Only <em>while there is activity</em>, and with a short 8-second budget.</td><td>Trying Searchzen.</td></tr>
+  <tr><td><strong>Cron URL</strong></td><td>Every time the URL is opened: every minute is recommended.</td><td>cPanel, shared hosting, Vercel (with an external cron service).</td></tr>
+  <tr><td><strong>Worker</strong> (<code>npm run worker</code>)</td><td>Every 15 seconds.</td><td>VPS and Docker. Best for many keywords and big audits.</td></tr>
+  <tr><td><strong>Run jobs now</strong></td><td>When you click the button in Admin → System. Ignores the jobs' own intervals.</td><td>Testing.</td></tr>
+</table>
+<p>The methods can be combined safely. A tick started while another is running simply does nothing.</p>
+<div class="note"><strong>How much can one tick do?</strong> With the defaults, one tick checks up to 40 keywords. With the worker (4 ticks a minute) that is up to about 9,600 checks an hour; with a cron job every minute about 2,400 an hour. Big platforms can raise <em>Checks per run</em> and <em>Parallel requests</em> in Admin → Settings → Rank tracking (see <a href="#serp-run">Run limits</a>).</div>
+
+<h3 id="sched-secret">The cron secret</h3>
+<p>The cron URL and the worker are protected by a secret:</p>
+<ul>
+  <li>If the environment variable <code>CRON_SECRET</code> is set (at least 12 characters, not the example value), that value is the secret.</li>
+  <li>Otherwise Searchzen creates a random secret the first time it is needed and stores it in the database.</li>
+</ul>
+<p>To see it, open <strong>Admin → System</strong>. The <strong>Scheduler</strong> card shows the complete <em>Cron URL</em> (with a Copy button) and a ready-made cron line. Click <strong>New secret</strong> to replace a stored secret, e.g. if it leaked; the old URL stops working immediately, so update your cron job and worker. The button is hidden while the secret comes from <code>CRON_SECRET</code>: change the environment variable instead and restart.</p>
+<p>The secret can be sent in two ways:</p>
+<pre><code>curl -fsS "https://seo.example.com/api/cron/tick?key=YOUR-SECRET"
+curl -fsS -H "Authorization: Bearer YOUR-SECRET" https://seo.example.com/api/cron/tick</code></pre>
+<p>GET and POST both work. A correct call answers with a JSON summary, for example <code>{"source":"cron","startedAt":"…","jobs":{"rank-checks":40,"audits":120,"gsc-import":3,"reports":0,"digest":0,"housekeeping":0},"failed":[],"skipped":[],"durationMs":21840,"skippedLocked":false}</code>. The numbers are the items each job handled (keywords checked, pages crawled, import steps, emails sent, rows cleaned up). A wrong or missing secret answers <code>401</code>. More than 30 calls per minute from one IP address answer <code>429</code>. <code>"skippedLocked":true</code> means another tick was still running.</p>
+
+<h3 id="sched-lazy">Lazy mode (default, no setup)</h3>
+<p>With <em>Admin → Settings → SEO tools → Run background jobs on visits</em> switched on, the platform runs a tick <strong>after</strong> it has answered a page request, whenever no tick ran during the last minute. The visitor never waits. A lazy tick has an 8-second time budget, and each server process tries at most once every 15 seconds.</p>
+<div class="warn">Lazy mode only works while people use the platform. At night, or on a new platform, nothing may run: daily rank checks happen late, audits pause, report emails are late. On cPanel, Passenger also stops the app after a period without requests. Use it to get started, then add the cron URL or the worker. You can leave lazy mode on as a backup: it does nothing while cron or the worker keep ticks fresh.</div>
+
+<h3 id="sched-cron">Cron URL</h3>
+<p>Open the URL every minute from any scheduler. Copy the exact URL from Admin → System → Scheduler.</p>
+<h4>cPanel</h4>
+<ol class="steps">
+  <li>Open <strong>Cron Jobs</strong> in cPanel.</li>
+  <li>Under <em>Add New Cron Job</em> choose <strong>Once Per Minute (* * * * *)</strong>.</li>
+  <li>Command:
+<pre><code>curl -fsS -m 70 "https://seo.example.com/api/cron/tick?key=YOUR-SECRET" &gt;/dev/null 2&gt;&amp;1</code></pre>
+  If your host has no <code>curl</code>, use <code>wget -q -T 70 -O /dev/null "https://seo.example.com/api/cron/tick?key=YOUR-SECRET"</code>.</li>
+  <li>Click <strong>Add New Cron Job</strong>. Within a few minutes Admin → System shows <em>Running</em> with the source <code>cron</code>.</li>
+</ol>
+<h4>Linux crontab (VPS)</h4>
+<p>Run <code>crontab -e</code> and add:</p>
+<pre><code>* * * * * curl -fsS -m 70 "https://seo.example.com/api/cron/tick?key=YOUR-SECRET" &gt;/dev/null 2&gt;&amp;1</code></pre>
+<h4>cron-job.org, EasyCron and other online cron services</h4>
+<ol class="steps">
+  <li>Create a free account on <a href="https://cron-job.org">cron-job.org</a> (or EasyCron, etc.).</li>
+  <li>Create a cron job with the URL <code>https://seo.example.com/api/cron/tick?key=YOUR-SECRET</code>.</li>
+  <li>Schedule: <strong>every 1 minute</strong>. Request method GET. Timeout: the maximum allowed (a tick can take up to about 45 seconds when there is work).</li>
+  <li>Turn on failure notifications if the service offers them, so you hear about it when your platform stops answering.</li>
+</ol>
+<p>Instead of putting the key in the address you can add a request header <code>Authorization: Bearer YOUR-SECRET</code>, if the service supports custom headers.</p>
+
+<h3 id="sched-worker">Worker (every 15 seconds)</h3>
+<p>The worker is a tiny Node.js script (<code>scripts/worker.mjs</code>) that calls the cron URL of the running app every 15 seconds. It needs the app to be running and the same secret.</p>
+<pre><code>CRON_SECRET=YOUR-SECRET npm run worker</code></pre>
+<table>
+  <tr><th>Variable</th><th>Meaning</th></tr>
+  <tr><td><code>CRON_SECRET</code></td><td>Required. The same value the app uses (environment variable), or the secret shown in Admin → System. At least 12 characters; the example value <code>change-me-to-a-long-random-string</code> is ignored by the app (the worker then gets <code>401</code>).</td></tr>
+  <tr><td><code>WORKER_URL</code></td><td>Address of the app. Default: <code>SITE_URL</code>, else <code>http://localhost:$PORT</code>.</td></tr>
+  <tr><td><code>PORT</code></td><td>App port used for the default address (default 3000).</td></tr>
+  <tr><td><code>WORKER_INTERVAL_SEC</code></td><td>Seconds between ticks (default 15, minimum 5).</td></tr>
+</table>
+<p>The worker also reads <code>.env</code>, <code>.env.local</code> and <code>.env.production</code> in the current folder. It prints a line when it starts, a line for every tick that did something, and a line when something goes wrong; a <code>401</code> in its log means the secret doesn't match. Admin → System → Scheduler shows the last tick as well.</p>
+<ul>
+  <li><strong>PM2:</strong> <code>pm2 start ecosystem.config.cjs</code> starts the worker as <code>searchzen-worker</code> next to the app. See the <a href="#install-vps">VPS guide</a> for setting <code>CRON_SECRET</code>. Logs: <code>pm2 logs searchzen-worker</code>.</li>
+  <li><strong>Docker:</strong> the <code>worker</code> service in <code>docker-compose.yml</code> runs it with <code>WORKER_URL=http://app:3000</code>. Logs: <code>docker compose logs -f worker</code>.</li>
+  <li><strong>systemd:</strong> create a service with <code>ExecStart=/usr/bin/node /var/www/searchzen/scripts/worker.mjs</code>, <code>WorkingDirectory=/var/www/searchzen</code>, <code>Environment=CRON_SECRET=…</code> and <code>Restart=always</code>.</li>
+</ul>
+
+<h3 id="sched-vercel">Vercel &amp; serverless hosting</h3>
+<ul>
+  <li><strong>Vercel Hobby (free)</strong> cron jobs run at most <strong>once a day</strong>. That is far too rare: one daily tick checks only 40 keywords and crawls an audit for 20 seconds. Use an external service such as <a href="https://cron-job.org">cron-job.org</a> to open the cron URL <strong>every minute</strong> (see above). Set <code>CRON_SECRET</code> in Vercel's environment variables and use the same value in the URL.</li>
+  <li><strong>Vercel Pro</strong> supports per-minute cron jobs. Add a <code>vercel.json</code> next to <code>package.json</code>:
+<pre><code>{
+  "crons": [{ "path": "/api/cron/tick", "schedule": "* * * * *" }]
+}</code></pre>
+  When <code>CRON_SECRET</code> is set in the project, Vercel sends it automatically as <code>Authorization: Bearer …</code>, which Searchzen accepts.</li>
+  <li><strong>Time limits:</strong> a tick started by the cron URL uses a time budget of 45 seconds and the route allows up to 60 seconds. Lazy ticks use 8 seconds. Keep <em>Time per run</em> in Rank tracking at 20 seconds or less on serverless hosts.</li>
+  <li>The worker can't run on serverless platforms. Railway, Render and Fly.io can run it as a second, always-on service.</li>
+</ul>
+
+<h3 id="sched-which">Which one should I use?</h3>
+<table>
+  <tr><th>Hosting</th><th>Recommended</th></tr>
+  <tr><td>VPS with PM2</td><td>Worker (already in <code>ecosystem.config.cjs</code>). Optionally a crontab entry as a backup.</td></tr>
+  <tr><td>Docker</td><td>The <code>worker</code> service in <code>docker-compose.yml</code>.</td></tr>
+  <tr><td>cPanel / Plesk / shared hosting</td><td>Cron URL every minute from the hosting panel.</td></tr>
+  <tr><td>Vercel</td><td>External cron service every minute (Hobby) or Vercel Cron every minute (Pro).</td></tr>
+  <tr><td>Local testing</td><td>Lazy mode, <em>Run jobs now</em>, or <code>npm run worker</code>.</td></tr>
+</table>
+<p>To check the result at any time, open <strong>Admin → System → Scheduler</strong>: <em>Running</em> means a tick finished in the last 3 minutes.</p>
+
+<!-- ───────────────────────────── SERP providers ───────────────────────────── -->
+<h2 id="serp">SERP providers</h2>
+<p>Searchzen reads Google results through a <strong>SERP data provider</strong>: a company that runs Google searches for a given country, language, city and device and returns the results as JSON. You choose one provider for the whole platform in <strong>Admin → Settings → Rank tracking</strong>, and every keyword check of every customer goes through it. Customers never see or need a provider key.</p>
+<div class="note"><strong>Searchzen never scrapes Google.</strong> The app sends no requests to Google Search itself and has no scraping, proxy or CAPTCHA code. Positions come only from the provider's official API (or from the Simulated provider, which invents them). This keeps your servers' IP addresses out of trouble and makes results reliable, but every check costs the provider's price per request.</div>
+<div class="warn">Until you choose a provider (and paste its key), <strong>no keyword is checked</strong>. Customers see “Rank checks aren't set up on this site yet”, and as an administrator you see a notice with a link to the settings. Keywords stay saved and are checked as soon as a provider works.</div>
+
+<h3 id="serp-compare">Compare the providers</h3>
+<table>
+  <tr><th>Provider</th><th>How a check works</th><th>Device</th><th>City / region</th><th>Usage shown in the admin panel</th></tr>
+  <tr><td><strong>Serper.dev</strong></td><td>One request per page of 10 results (<code>page=1, 2…</code>).</td><td><strong>Desktop only</strong>: mobile keywords get desktop results.</td><td>Yes (<code>location</code> text).</td><td>Requests and the credits Serper reports.</td></tr>
+  <tr><td><strong>SerpApi</strong></td><td>One search per page of 10 results (<code>start=0, 10…</code>).</td><td>Desktop and mobile.</td><td>Yes (Google location names).</td><td>Requests.</td></tr>
+  <tr><td><strong>DataForSEO</strong></td><td>One “Live” call per check; DataForSEO pages through Google itself and bills <strong>each page of 10 results</strong>. Without competitors it stops as soon as the project's domain is found.</td><td>Desktop and mobile.</td><td>Yes (<code>City,Region,Country</code> location names).</td><td>Requests (pages) and the cost in USD that DataForSEO reports.</td></tr>
+  <tr><td><strong>ValueSERP</strong></td><td>One request per page of 10 results (<code>page=1, 2…</code>).</td><td>Desktop and mobile.</td><td>Yes (place names; the keyword's country and language are kept).</td><td>Requests and the credits ValueSERP reports.</td></tr>
+  <tr><td><strong>Simulated</strong></td><td>No API at all: realistic but fake positions.</td><td>Both</td><td>Ignored</td><td>Requests only.</td></tr>
+</table>
+<p>All providers return the organic results, the position and URL of the project's domain (subdomains count as the same site), the positions of up to five competitor domains, and the SERP features on the page (featured snippet, local pack, AI overview, People also ask, images, videos, top stories, shopping, sitelinks, knowledge panel). Google has ignored the old “100 results per page” parameter since September 2025, so every provider reads results <strong>page by page, 10 at a time</strong>.</p>
+<div class="note"><strong>City or region names.</strong> Customers can type a city or region per keyword (or as a project default). Providers only understand names they know; the safest format is Google's canonical location name, for example <code>Austin,Texas,United States</code> or <code>Paris,Ile-de-France,France</code>. Searchzen adds the keyword's country name when it is missing (<code>Austin, Texas</code> becomes <code>Austin,Texas,United States</code>) and formats the name the way each provider expects. An unknown location makes the provider answer with an error; after 3 such errors in a row the keyword is paused with a red <em>Paused: checks failed</em> badge (hover it to see the error). Fix the location and resume the keyword. Serper.dev does not support a device, so mobile keywords get desktop results there; the dashboard shows a <em>Desktop results</em> badge on those keywords.</div>
+
+<h3 id="serp-signup">Sign up and get a key</h3>
+<p>All four providers offer self-service sign-up and pay-as-you-go or monthly plans, and most give free trial credits. Prices change often, so <strong>check each provider's pricing page</strong> before you choose and before you set your own plan prices.</p>
+<div class="box">
+  <h4>Serper.dev</h4>
+  <ol class="steps">
+    <li>Create an account at <a href="https://serper.dev">serper.dev</a>.</li>
+    <li>Open the <strong>API key</strong> page of the dashboard and copy the key.</li>
+    <li>Buy credits when your trial credits run out (see the pricing page on serper.dev). One credit is used per page of 10 results.</li>
+  </ol>
+  <h4>SerpApi</h4>
+  <ol class="steps">
+    <li>Create an account at <a href="https://serpapi.com">serpapi.com</a>.</li>
+    <li>Open <strong>Your Account → API Key</strong> (<a href="https://serpapi.com/manage-api-key">serpapi.com/manage-api-key</a>) and copy the private key.</li>
+    <li>Choose a plan with enough searches per month (see <a href="https://serpapi.com/pricing">serpapi.com/pricing</a>). One search is used per page of 10 results.</li>
+  </ol>
+  <h4>DataForSEO</h4>
+  <ol class="steps">
+    <li>Create an account at <a href="https://dataforseo.com">dataforseo.com</a> and add funds to your balance (see their pricing page for the SERP API, <em>Live</em> mode).</li>
+    <li>Open <strong>API Access</strong> in the DataForSEO dashboard. Your <strong>API login</strong> (usually your email) and <strong>API password</strong> are shown there. The API password is <em>not</em> your account password.</li>
+    <li>In Searchzen enter both as <code>login:password</code>, e.g. <code>you@example.com:a1b2c3d4e5</code>.</li>
+  </ol>
+  <h4>ValueSERP</h4>
+  <ol class="steps">
+    <li>Create an account at <a href="https://www.valueserp.com">valueserp.com</a> (a Traject Data product).</li>
+    <li>Copy the <strong>API key</strong> from the dashboard.</li>
+    <li>Choose a credit plan on their pricing page. One credit is used per page of 10 results.</li>
+  </ol>
+</div>
+
+<h3 id="serp-keys">Where to paste keys</h3>
+<ol class="steps">
+  <li>Open <strong>Admin → Settings → Rank tracking</strong>.</li>
+  <li>Under <em>Provider</em> select the provider and paste its key into the matching field. Keys are stored in your database and are never sent to browsers; after saving, the field shows “A key is saved. Type a new one to replace it.” Leave it empty to keep the saved key, or tick <em>Remove saved key</em> to delete it.</li>
+  <li>Choose the <a href="#serp-depth">depth</a> and click <strong>Save</strong>. Saving a new provider or key also ends a <a href="#serp-pause">pause</a>.</li>
+  <li>Click <strong>Test connection</strong> to check the key with one real search.</li>
+</ol>
+<p>You can also set keys with <strong>environment variables</strong>, which win over the admin panel (the field then says “Set by an environment variable on the server.”):</p>
+<table>
+  <tr><th>Variable</th><th>Provider</th></tr>
+  <tr><td><code>SERPER_API_KEY</code></td><td>Serper.dev</td></tr>
+  <tr><td><code>SERPAPI_API_KEY</code></td><td>SerpApi</td></tr>
+  <tr><td class="wrap"><code>DATAFORSEO_LOGIN</code> + <code>DATAFORSEO_PASSWORD</code></td><td>DataForSEO (both are needed)</td></tr>
+  <tr><td><code>VALUESERP_API_KEY</code></td><td>ValueSERP</td></tr>
+  <tr><td><code>SERP_PROVIDER</code></td><td>The provider to use (<code>serper</code>, <code>serpapi</code>, <code>dataforseo</code>, <code>valueserp</code> or <code>simulated</code>) <em>when none is chosen in the admin panel</em>. A provider saved in the admin panel wins.</td></tr>
+</table>
+
+<h3 id="serp-depth">Depth and cost</h3>
+<p><strong>Depth</strong> is how many results Searchzen reads per keyword: 10, 20 (default), 50 or 100. A keyword not found within the depth shows as “20+” (for depth 20) and counts as not ranked.</p>
+<table>
+  <tr><th>Depth</th><th>Requests per check (at most)</th><th>Notes</th></tr>
+  <tr><td>10</td><td>1</td><td>Cheapest. Only page 1: keywords beyond #10 show as “10+”.</td></tr>
+  <tr><td>20</td><td>2</td><td><strong>Recommended.</strong> Pages 1–2, where most keywords that matter are.</td></tr>
+  <tr><td>50</td><td>5</td><td>Up to 5× the cost of depth 10.</td></tr>
+  <tr><td>100</td><td>10</td><td>Up to 10× the cost of depth 10. Use with care.</td></tr>
+</table>
+<p>Paging <strong>stops early</strong> once the project's domain <em>and</em> every competitor domain have been found, or when Google has no more results. A keyword at #3 in a project without competitors costs one request even at depth 100; a keyword that doesn't rank always costs the full depth. Competitors therefore make checks more expensive: paging continues until all of them are found.</p>
+<h4>Estimate your monthly requests</h4>
+<div class="formula">requests per month ≈ keywords × checks per month × pages per check<br>
+checks per month: daily ≈ 30, weekly ≈ 4.3<br>
+pages per check: between 1 and depth ÷ 10</div>
+<p>Example: a customer on the default Pro plan with 300 keywords checked daily at depth 20 needs between 9,000 and 18,000 requests a month (300 × 30 × 1 to 2). The same keywords checked weekly need between about 1,300 and 2,600. Multiply by your expected number of customers, then look up the provider's price per 1,000 requests on its pricing page. Then:</p>
+<ul>
+  <li>Set <strong>plan limits</strong> (tracked keywords, daily or weekly checks) so a full plan costs you clearly less than its price. Plans that check weekly cost about 7 times less.</li>
+  <li>Keep the depth at 20 unless your customers really need positions beyond page 2.</li>
+  <li>“Check now” (dashboard and API) runs extra checks. They are limited (see <a href="#g-rankings">Rankings</a>) but still cost requests.</li>
+  <li>Watch <strong>Provider usage (last 30 days)</strong> on the same page: requests, errors and credits (DataForSEO: cost in USD) per provider and day. The admin dashboard shows the number of rank checks per day.</li>
+</ul>
+
+<h3 id="serp-run">Run limits</h3>
+<table>
+  <tr><th>Setting</th><th>Default</th><th>Range</th><th>Meaning</th></tr>
+  <tr><td>Checks per run</td><td>40</td><td>1–500</td><td>Keywords checked per scheduler tick at most.</td></tr>
+  <tr><td>Parallel requests</td><td>3</td><td>1–10</td><td>Checks running at the same time. Respect your provider plan's rate limit.</td></tr>
+  <tr><td>Time per run (seconds)</td><td>20</td><td>5–50</td><td>Share of each tick used for rank checks. Keep it under your host's request time limit (cron ticks have a 45-second budget, lazy ticks 8 seconds).</td></tr>
+</table>
+<p>Keywords are checked oldest-due first. A keyword is due when its <em>next check</em> time has passed: right after it is added, then every 24 hours (daily) or 7 days (weekly). The <em>Status</em> card on the page shows the provider in use, the depth, the keywords due now and the keywords checked in the last 24 hours. If “Keywords due now” keeps growing, raise <em>Checks per run</em> or <em>Parallel requests</em>, or tick more often (worker).</p>
+
+<h3 id="serp-test">Test connection</h3>
+<p>The <strong>Test connection</strong> card runs one real check: choose the provider, optionally paste a key to test it before saving, enter a keyword (default <code>coffee</code>) and a domain to find (default <code>wikipedia.org</code>). It shows the time taken, the position found, the SERP features and the top 10 results. The test uses your configured depth, is counted in the usage table, and is limited to 10 tests per 10 minutes. An error such as “the API key was rejected (HTTP 401)” or “quota or credits exhausted (HTTP 402)” tells you exactly what the provider answered.</p>
+
+<h3 id="serp-pause">Pause on errors</h3>
+<p>Provider problems are sorted into four kinds, and Searchzen reacts differently:</p>
+<table>
+  <tr><th>Kind</th><th>Typical cause</th><th>What happens</th></tr>
+  <tr><td><strong>Configuration</strong></td><td>Wrong or deleted key (HTTP 401/403), DataForSEO authentication errors.</td><td>All rank checks <strong>pause for 30 minutes</strong>. The keyword is put back in the queue, nothing is charged to it.</td></tr>
+  <tr><td><strong>Quota</strong></td><td>Credits or balance used up, plan limit, rate limit (HTTP 402/429 or a message about credits).</td><td>All rank checks <strong>pause for 1 hour</strong>.</td></tr>
+  <tr><td>Network</td><td>Timeout, provider down (HTTP 5xx).</td><td>Only that keyword is retried later: after 15 minutes, then 1 hour, 4 hours, then every 12 hours.</td></tr>
+  <tr><td>Response</td><td>Unexpected answer, e.g. an unknown location.</td><td>Same as network: the keyword is retried with growing delays, and its error is shown on the keyword's page.</td></tr>
+</table>
+<p>While paused, Admin → Settings → Rank tracking shows <em>Rank checks are paused until …</em> with the provider's message and a <strong>Resume now</strong> button, and customers see “Rank checks are paused until … after a problem with the rank data provider. They resume automatically.” Fix the cause (new key, more credits), then click <em>Resume now</em> or simply save the settings with the new key. A pause prevents hammering the provider with thousands of failing requests.</p>
+
+<h3 id="serp-simulated">Simulated provider</h3>
+<p>The <strong>Simulated</strong> provider generates realistic but <strong>fake</strong> positions without any API: smooth random walks per keyword and day (the same keyword gives the same result on the same day), some keywords that never rank, competitors with their own walks, plausible ranking URLs and SERP features. It is meant for demos and for trying the dashboard, alerts and reports.</p>
+<ul>
+  <li>In <strong>demo mode</strong> (<code>DEMO_MODE=true</code>) it is used automatically when no other provider is chosen.</li>
+  <li>Outside demo mode you must switch on <em>Allow the Simulated provider (testing only)</em> before you can select it.</li>
+  <li>While it is in use, the rankings pages show “Positions here are simulated test data, not real Google rankings.”</li>
+</ul>
+<div class="warn">Never use the Simulated provider for real customers. Its numbers have nothing to do with Google.</div>
+
+<!-- ───────────────────────────── GSC setup ───────────────────────────── -->
+<h2 id="gsc-setup">Google Search Console setup</h2>
+<p>Customers on plans with <em>Google Search Console</em> can connect their Google account and import clicks, impressions, CTR, average position, queries and pages. For this, <strong>you</strong> create one OAuth client in Google Cloud for your platform (free) and paste it into <strong>Admin → Settings → Google</strong>. Customers then click <em>Connect with Google</em>, approve read-only access and pick their property.</p>
+<p>Searchzen asks Google for these scopes: <code>openid</code>, <code>email</code> (to show which Google account is connected) and <code>https://www.googleapis.com/auth/webmasters.readonly</code> (“View Search Console data for your verified sites”). It never writes to Search Console.</p>
+
+<h3 id="gsc-project">1. Create a Google Cloud project and enable the API</h3>
+<ol class="steps">
+  <li>Open <a href="https://console.cloud.google.com/">console.cloud.google.com</a> and sign in with the Google account that should own the app (ideally a company account).</li>
+  <li>Click the project selector at the top → <strong>New project</strong>. Name it, e.g. <code>Searchzen</code>, and click <strong>Create</strong>. Make sure the new project is selected.</li>
+  <li>Open <strong>APIs &amp; Services → Library</strong>, search for <strong>Google Search Console API</strong>, open it and click <strong>Enable</strong>.</li>
+</ol>
+
+<h3 id="gsc-consent">2. Configure the OAuth consent screen</h3>
+<p>Google's console calls this <strong>Google Auth Platform</strong> (older versions: <em>OAuth consent screen</em>).</p>
+<ol class="steps">
+  <li>Open <strong>APIs &amp; Services → OAuth consent screen</strong> (or <strong>Google Auth Platform → Branding</strong>) and click <strong>Get started</strong> / <strong>Configure</strong>.</li>
+  <li><strong>App information:</strong> app name (your platform name, e.g. <em>Searchzen</em> or your brand) and a user support email.</li>
+  <li><strong>Audience / User type:</strong> choose <strong>External</strong>, so any Google account can connect (Internal is only for accounts in your own Google Workspace).</li>
+  <li><strong>Contact information:</strong> your email. Accept the policy and create.</li>
+  <li><strong>Branding:</strong> add your logo (optional), the <em>application home page</em> (<code>https://seo.example.com</code>), the <em>privacy policy</em> link (<code>https://seo.example.com/p/privacy-policy</code> or wherever your policy is) and the <em>terms of service</em> link, and add your domain (<code>example.com</code>) under <em>Authorized domains</em>.</li>
+  <li><strong>Data access / Scopes:</strong> click <em>Add or remove scopes</em> and add <code>.../auth/webmasters.readonly</code> (Google Search Console API), plus <code>openid</code> and <code>.../auth/userinfo.email</code>. Save.</li>
+</ol>
+
+<h3 id="gsc-verify">3. Testing vs. production, and the “unverified app” warning</h3>
+<p>A new app starts in the <strong>Testing</strong> publishing status:</p>
+<ul>
+  <li>Only the <strong>test users</strong> you add under <em>Audience → Test users</em> (up to 100 Google accounts) can connect. Anyone else gets Google's <em>Error 403: access_denied</em> page.</li>
+  <li>Google lets refresh tokens of Testing apps <strong>expire after 7 days</strong>. Imports then stop and customers see <em>Disconnected</em> and must reconnect. Testing is therefore only for trying the integration.</li>
+</ul>
+<p>For real customers, click <strong>Publish app</strong> (<em>Audience → Publishing status → In production</em>). Because <code>webmasters.readonly</code> is a <em>sensitive</em> scope, Google shows a <strong>“Google hasn't verified this app”</strong> warning until your app is verified; users can still continue with <em>Advanced → Go to (your app)</em>, and unverified apps are limited in the number of users. To remove the warning, submit the app for <strong>verification</strong> in the console (<em>Verification Center</em>). Google typically asks for:</p>
+<ul>
+  <li>a verified domain (Google Search Console ownership of your platform's domain) and a public home page on it;</li>
+  <li>a privacy policy on that domain that describes how you use Google user data (see <a href="#privacy-gsc">Search Console data &amp; Limited Use</a>);</li>
+  <li>a short explanation and often a demo video of how the scope is used: the customer clicks <em>Connect with Google</em> on the Search Console tab, approves, picks a property and sees the imported clicks, impressions and queries.</li>
+</ul>
+<p>Verification can take from a few days to several weeks. Read Google's current requirements in the console; they change from time to time.</p>
+
+<h3 id="gsc-client">4. Create the OAuth client</h3>
+<ol class="steps">
+  <li>Open <strong>APIs &amp; Services → Credentials</strong> (or <strong>Google Auth Platform → Clients</strong>) → <strong>Create credentials → OAuth client ID</strong>.</li>
+  <li>Application type: <strong>Web application</strong>. Name: e.g. <code>Searchzen web</code>.</li>
+  <li>Under <strong>Authorized redirect URIs</strong> add exactly:
+<pre><code>https://seo.example.com/api/gsc/callback</code></pre>
+    It is your <em>Site URL</em> followed by <code>/api/gsc/callback</code>. Admin → Settings → Google and the dashboard's setup notice show the exact value for your installation. It must match character for character: <code>https</code> vs <code>http</code>, <code>www</code> or not, no trailing slash. <em>Authorized JavaScript origins</em> is not needed.</li>
+  <li>Click <strong>Create</strong> and copy the <strong>Client ID</strong> (<code>…apps.googleusercontent.com</code>) and the <strong>Client secret</strong> (<code>GOCSPX-…</code>).</li>
+  <li>In Searchzen open <strong>Admin → Settings → Google</strong>, paste both and save.</li>
+  <li>Test it: open a project in <code>/dashboard</code> (administrators have every plan feature), open the <strong>Search Console</strong> tab and click <strong>Connect with Google</strong>. In Testing mode, use an account you added as a test user.</li>
+</ol>
+<div class="note">If you change your Site URL (new domain, adding <code>www</code>), add the new redirect URI in Google Cloud too. Google can take a few minutes to apply changes to a client.</div>
+
+<h3 id="gsc-secret">5. APP_SECRET (encryption of Google tokens)</h3>
+<p>The Google <strong>refresh token</strong> of every connected account is stored <strong>encrypted</strong> (AES-256-GCM) in the database. Access tokens are kept in memory only. The same secret also signs the OAuth “state” of the sign-in flow and the unlock cookies of password-protected reports. Searchzen takes the secret from, in this order:</p>
+<ol>
+  <li>the environment variable <code>APP_SECRET</code> (at least 16 characters);</li>
+  <li><code>appSecret</code> in <code>storage/config.json</code>, generated automatically on first use on normal installations;</li>
+  <li>an <code>app_secret</code> row in the database, when <code>storage/config.json</code> can't be written (read-only hosting without <code>APP_SECRET</code>).</li>
+</ol>
+<div class="warn">
+  <p><strong>Set <code>APP_SECRET</code> yourself</strong> (e.g. <code>openssl rand -hex 32</code>) on Vercel and other serverless hosts, when you run more than one app server or container, and when servers don't share the same <code>storage</code> folder. Otherwise each server could generate its own secret, and tokens encrypted by one server can't be read by another.</p>
+  <p><strong>Never change or lose the secret</strong> once customers have connected Google. With a different secret the stored tokens can't be decrypted: imports stop with “The stored Google token can't be read (the app secret changed). Reconnect the account.” Back up <code>storage/config.json</code> (or your <code>APP_SECRET</code>) together with the database.</p>
+</div>
+
+<!-- ───────────────────────────── User guide ───────────────────────────── -->
+<h2 id="guide">User guide</h2>
+<p>This chapter describes the customer dashboard (<code>/dashboard</code>). You can share it with your customers or copy parts into your own help pages. The left menu has <strong>Projects</strong>, <strong>Alert channels</strong>, <strong>API keys</strong>, <strong>Account</strong> and <strong>Plans &amp; pricing</strong>. Each project has the tabs <strong>Overview</strong>, <strong>Rankings</strong>, <strong>Site audit</strong>, <strong>Search Console</strong>, <strong>Reports</strong> and <strong>Settings</strong>.</p>
+
+<h3 id="g-projects">Projects</h3>
+<p>One project per website. Click <strong>New project</strong> and enter:</p>
+<ul>
+  <li><strong>Website</strong>: the domain, e.g. <code>example-shop.com</code> (no <code>https://</code> or path needed). Subdomains count as the same site: a result on <code>blog.example-shop.com</code> or <code>www.example-shop.com</code> counts as the project's position.</li>
+  <li><strong>Project name</strong> (optional, defaults to the domain).</li>
+  <li><strong>Country</strong>, <strong>language</strong> and <strong>device</strong>: the defaults for new keywords. Each keyword can use other values.</li>
+</ul>
+<p>The project <strong>Overview</strong> shows the headline numbers of the last 7, 30 or 90 days: rankings (visibility, average position, movement, top gainers and losers), the last audit's health score and top issues, Search Console clicks, and the latest alerts sent (with failed deliveries). The dashboard home lists all projects with their visibility, average position, keyword movement, health score and recent activity, plus the <em>weekly digest</em> switch.</p>
+<h4>Project settings</h4>
+<table>
+  <tr><th>Section</th><th>What you set</th></tr>
+  <tr><td>General</td><td>Name, website, <em>Project active</em>. Changing the domain keeps keywords and history; new checks look for the new domain. A paused project isn't checked, and scheduled audits and report emails don't run.</td></tr>
+  <tr><td>Keyword defaults</td><td>Country, language, device and city/region for new keywords.</td></tr>
+  <tr><td>Competitors</td><td>Up to 5 competitor domains (see <a href="#g-competitors">Competitors</a>).</td></tr>
+  <tr><td>Rank checks</td><td>Daily or weekly. Plans with weekly checks always check weekly.</td></tr>
+  <tr><td>Site audit</td><td>Automatic audit (off, weekly, monthly), pages per audit, pause between requests, crawler identity, include and exclude paths (see <a href="#g-audit">Site audit</a>).</td></tr>
+  <tr><td>Alerts</td><td>Rank alert rules, the alert channels to use, and an alert when an audit finishes (see <a href="#g-alerts">Alerts</a>).</td></tr>
+  <tr><td>Report branding</td><td>Company name, accent colour and logo on reports (white-label plans).</td></tr>
+  <tr><td>Sharing</td><td>The report link and its password (see <a href="#g-reports">Reports</a>).</td></tr>
+  <tr><td>Search Console</td><td>The connected property.</td></tr>
+  <tr><td>Delete</td><td>Deletes the project with all keywords, ranking history, audits, Search Console data and report schedules. Type the domain to confirm. This can't be undone.</td></tr>
+</table>
+
+<h3 id="g-keywords">Keywords</h3>
+<p>Open <strong>Rankings → Add keywords</strong>:</p>
+<ul>
+  <li><strong>Keywords</strong>: one per line, up to 1,000 at once. Duplicates are skipped. A keyword can be up to 200 characters.</li>
+  <li><strong>Country</strong> and <strong>language</strong> (Google's <code>gl</code> and <code>hl</code>), <strong>device</strong> (desktop or mobile) and <strong>location</strong> (a city or region, empty = the whole country; see the note on <a href="#serp-compare">location names</a>). The same phrase can be tracked several times with different countries, languages, devices or locations.</li>
+  <li><strong>Tags</strong>: comma separated, e.g. <code>blog, money pages</code>. Up to 10 tags per keyword, 30 characters each. Use them to filter the table and to bulk-edit.</li>
+  <li><strong>Target URL</strong> (optional): the page on the project's domain that should rank. It enables the “Target URL stops ranking” alert.</li>
+</ul>
+<p>New keywords are due for a check right away and are checked within the next few minutes (when <a href="#scheduling">background jobs</a> run).</p>
+<h4>CSV import</h4>
+<p><em>Or import a CSV file</em> accepts up to 5,000 keywords and 2 MB. The separator (comma or semicolon) is detected. With a header row, columns are matched by name in any order; without one they are read in this order:</p>
+<pre><code>keyword,country,language,device,location,tags,target_url
+running shoes,US,en,mobile,"Austin,Texas,United States",shoes|money,https://example-shop.com/shoes
+trail running shoes,GB,en,desktop,,shoes,</code></pre>
+<p>Accepted header names: <code>keyword</code>/<code>keywords</code>/<code>phrase</code>/<code>query</code>, <code>country</code>/<code>gl</code>, <code>language</code>/<code>hl</code>, <code>device</code>, <code>location</code>/<code>city</code>, <code>tags</code>/<code>tag</code> (separated by <code>|</code> or <code>,</code>), <code>target_url</code>/<code>url</code>. Empty cells use the values of the form. Keywords beyond the plan's limit are not added; the result message tells how many were added, duplicates, invalid and over the limit.</p>
+<h4>Managing keywords</h4>
+<p>Select keywords in the table to <strong>Check now</strong>, <strong>Pause</strong>, <strong>Resume</strong>, <strong>Set tags</strong> or <strong>Delete</strong> (with their history). Click a keyword to see its page and change its settings. Paused keywords are not checked and don't count as active. If a plan is downgraded, keywords above the new limit (the newest ones) are paused automatically with the note “Paused: over the plan's keyword limit.”; after an upgrade, resume them.</p>
+
+<h3 id="g-rankings">Rankings</h3>
+<p>The <strong>Rankings</strong> tab shows KPIs, charts and the keyword table for the last 7, 30 or 90 days.</p>
+<table>
+  <tr><th>KPI</th><th>Meaning</th></tr>
+  <tr><td>Tracked keywords</td><td>Active keywords of the project.</td></tr>
+  <tr><td>Avg. position</td><td>Average of the <em>ranked</em> keywords' latest positions (keywords not found within the depth are left out). Lower is better.</td></tr>
+  <tr><td>Visibility</td><td>Expected share of clicks, 0–100 % (see below).</td></tr>
+  <tr><td>Top 3 / Top 10 / Top 100</td><td>Keywords ranking at positions 1–3, 1–10, 1–100.</td></tr>
+  <tr><td>Moved up / Moved down</td><td>Keywords whose position improved or dropped during the period.</td></tr>
+</table>
+<h4>The visibility score</h4>
+<p>Visibility estimates how many clicks the keywords get compared with the best case. Each position has an expected click-through rate (CTR): position 1 ≈ 28 %, 2 ≈ 15.5 %, 3 ≈ 10 %, 4 ≈ 7 %, 5 ≈ 5.2 %, falling to 1.7 % at position 10 and 0.5 % at 20; positions 21–50 count 0.2 %, 51–100 count 0.05 %, not ranked 0.</p>
+<div class="formula">visibility = Σ expected CTR(position of each keyword) ÷ (number of keywords × 28 %) × 100</div>
+<p>So 100 % means every keyword ranks #1; a project where every keyword is at #10 scores about 6 %. The score is shown with one decimal. The chart shows visibility and average position per day; days without a check carry the previous position forward for up to 8 days.</p>
+<h4>Keyword table and keyword page</h4>
+<p>The table shows each keyword's position, the change over 1, 7 and 30 days (▲ up, ▼ down, ● new, ✕ lost), the best position, the ranking URL, SERP features and a 30-day trend line. Filter by search text, tag and status; <strong>Export CSV</strong> downloads the table. A keyword's page shows: first and best position, average, last check (and the last error, if a check failed), the position history chart, daily positions, ranking-URL changes, the competitors' positions, the SERP features seen per check, and the <strong>latest results page</strong> (the top 20 results of the last check, kept for 30 days).</p>
+<h4>Check now</h4>
+<p>Select keywords and click <strong>Check now</strong> to check them immediately, outside the schedule. Limits: up to 100 keywords per click; a keyword checked in the last 10 minutes is skipped; 6 clicks per 10 minutes; per day, as many manual checks as the plan's keyword limit (at least 25; 500 for unlimited plans). The REST API allows 10 check requests per minute. Every check costs a provider request, so these limits protect your SERP budget.</p>
+
+<h3 id="g-competitors">Competitors and SERP features</h3>
+<p>Add up to <strong>5 competitor domains</strong> in Project settings → Competitors (one per line). Their positions are recorded with every check of the project's keywords, at no extra request when they appear on the pages already read (paging continues until all of them are found or the depth is reached, see <a href="#serp-depth">Depth and cost</a>). <strong>Rankings → Competitors</strong> shows:</p>
+<ul>
+  <li><strong>Share of voice</strong>: each domain's expected clicks across your checked keywords as a share of all of them;</li>
+  <li><strong>Visibility over time</strong> for your domain and each competitor;</li>
+  <li><strong>Domains compared</strong>: visibility, average position, top 3, top 10, ranked keywords, and how often each competitor is ahead of you.</li>
+</ul>
+<p><strong>SERP features</strong> are recorded for every check, whoever owns them: featured snippet, local pack, AI overview, People also ask, images, videos, top stories, shopping, sitelinks and knowledge panel. They explain why a #3 position can get fewer clicks than expected (e.g. below an AI overview and a local pack).</p>
+
+<h3 id="g-alerts">Alerts and alert channels</h3>
+<p>First create one or more channels in <strong>Alert channels</strong>, then pick them in Project settings → Alerts. Alerts are only sent to the channels chosen there.</p>
+<table>
+  <tr><th>Channel</th><th>Setup</th></tr>
+  <tr><td>Email</td><td>Up to 10 addresses (needs SMTP on the platform).</td></tr>
+  <tr><td>Slack</td><td>Apps → Incoming Webhooks → pick a channel → paste the webhook URL.</td></tr>
+  <tr><td>Discord</td><td>Channel settings → Integrations → Webhooks → paste the URL.</td></tr>
+  <tr><td>Microsoft Teams</td><td>Channel → Workflows → “Post to a channel when a webhook request is received” → paste the URL.</td></tr>
+  <tr><td>Telegram</td><td>Create a bot with @BotFather, add it to the chat, find the chat ID with <code>getUpdates</code>, paste token and chat ID.</td></tr>
+  <tr><td>Webhook</td><td>Any HTTPS URL (Zapier, Make, n8n, your server). Receives the JSON payload below.</td></tr>
+</table>
+<p>Use <strong>Send test</strong> to check a channel. <strong>Rank alert rules</strong> (up to 10 per project; default: enters the top 10, leaves the top 10):</p>
+<ul>
+  <li><strong>Keyword enters the top 3 / 10 / 100</strong> – it was outside (or not ranked) and now ranks inside.</li>
+  <li><strong>Keyword leaves the top 3 / 10 / 100</strong> – it ranked inside and now ranks outside or not at all.</li>
+  <li><strong>Position changes by N places or more</strong> (1–100), up or down.</li>
+  <li><strong>Target URL stops ranking</strong> – the keyword's target URL ranked at the previous check and now another page (or nothing) ranks.</li>
+</ul>
+<p>Rules compare the new position with the keyword's previous day of checks. A rule fires at most once per keyword and day, however often the keyword is checked. Up to 20 alerts per project and run are sent one by one; more are summarised in one message. <strong>Alert when a site audit finishes</strong> sends the score, its change and the number of new and fixed issues (and an alert when an audit fails).</p>
+<h4>Webhook payload</h4>
+<pre><code>POST https://your-endpoint.example
+Content-Type: application/json
+X-Searchzen-Event: rank_entered_top
+X-Searchzen-Delivery: 5f0c…        (unique per delivery)
+X-Searchzen-Signature: sha256=…    (HMAC-SHA256 of the raw body with the channel's secret)
+
+{
+  "event": "rank_entered_top",
+  "project": { "id": 12, "name": "Example Shop", "domain": "example-shop.com" },
+  "message": "\"running shoes\" entered the top 10: now #8 (was #14).",
+  "data": { "keyword": "running shoes", "position": 8, "previous": 14, "change": 6,
+            "url": "https://example-shop.com/shoes", "location": "United States", "device": "desktop" },
+  "url": "https://seo.example.com/dashboard/projects/12",
+  "sentAt": "2026-10-19T07:12:03.000Z"
+}</code></pre>
+<p>Events: <code>rank_entered_top</code>, <code>rank_left_top</code>, <code>rank_changed</code>, <code>rank_url_lost</code>, <code>audit_finished</code>, <code>audit_failed</code> and <code>test</code>. Verify the signature by computing <code>sha256=</code> + hex HMAC-SHA256 of the raw request body with your secret and comparing it to the header. Webhooks to private or local addresses are refused unless the server sets <code>ALLOW_PRIVATE_WEBHOOKS=1</code>.</p>
+
+<h3 id="g-audit">Site audit</h3>
+<p>Open <strong>Site audit</strong> and click <strong>Start audit</strong>, or schedule audits weekly or monthly in Project settings → Site audit. While it runs, the page shows the progress (“120 of 500 pages crawled”, URLs waiting). The crawl runs in the background; keeping the page open makes it faster. When it finishes you get the health score, the issues by severity and category, the site checks (robots.txt, XML sitemap, HTTPS, http → https redirect, start URL), the list of issues and the list of pages.</p>
+<h4>How the crawler works</h4>
+<ol class="steps">
+  <li><strong>Start.</strong> It opens <code>https://&lt;domain&gt;/</code> (falling back to <code>http://</code>) and follows redirects; a redirect to <code>www.</code> or another subdomain of the same site decides the host that is crawled. A redirect to another site fails the audit.</li>
+  <li><strong>robots.txt.</strong> It reads <code>/robots.txt</code> and obeys the rules for <code>SearchzenBot</code> (or <code>*</code>), with Google's matching rules: the most specific user-agent group, the longest matching rule wins, <code>*</code> and <code>$</code> wildcards. A <code>Crawl-delay</code> is honoured (up to 10 seconds). If robots.txt blocks the start page, the audit fails with “robots.txt does not allow SearchzenBot to crawl the start page.”</li>
+  <li><strong>Sitemaps.</strong> It reads the sitemaps listed in robots.txt, or <code>/sitemap.xml</code> and <code>/sitemap_index.xml</code> (sitemap indexes, gzip and plain-text sitemaps are understood). Their URLs are added to the queue, so pages without links are crawled too.</li>
+  <li><strong>Crawl.</strong> It fetches pages breadth-first (closest to the home page first), 3 at a time, or one at a time with a pause when a crawl delay applies. It follows internal links up to 10 clicks deep, plus canonical and hreflang targets. Images, scripts, styles, fonts, videos and archives are skipped. Up to 3 MB of HTML per page is read; each request has a 10-second timeout. The first 50 external links found are checked with a HEAD request (confirmed with GET).</li>
+  <li><strong>Analyse.</strong> When the queue is empty or the page limit is reached, it computes internal links (inlinks) and click depth, runs the 57 checks, stores the issues and the health score, compares with the previous audit and sends the audit alert.</li>
+</ol>
+<p>The crawl is <strong>resumable</strong>: it runs in short slices from the scheduler (and from the open audit page), keeps its queue in the database and holds a 90-second lock per audit so two workers never crawl the same audit. If a server restarts mid-crawl, the next tick continues where it stopped; pages already stored are never fetched twice. An audit running longer than 24 hours is stopped. Only one audit per project runs at a time.</p>
+<h4>Crawler settings (Project settings → Site audit)</h4>
+<table>
+  <tr><th>Setting</th><th>Meaning</th></tr>
+  <tr><td>Automatic audit</td><td>Off, every week or every month (counts towards the plan's audits per month).</td></tr>
+  <tr><td>Pages per audit</td><td>Your own cap; <code>0</code> = the plan's maximum. Without any limit (unlimited plans, administrators) an audit crawls 500 pages unless the project sets a higher number (hard cap 50,000).</td></tr>
+  <tr><td>Pause between requests (ms)</td><td>0–10,000 ms. Slows the crawler down for small servers (pages are then fetched one at a time). A larger <code>Crawl-delay</code> in robots.txt wins.</td></tr>
+  <tr><td>Crawler identity</td><td><strong>SearchzenBot</strong> (recommended): <code>SearchzenBot/1.0 (+https://seo.example.com)</code>, with your Site URL. <strong>Desktop browser</strong>: a Chrome user agent, for sites that block unknown bots. robots.txt rules for <code>SearchzenBot</code> are followed either way.</td></tr>
+  <tr><td>Only crawl these paths</td><td>One path per line, e.g. <code>/blog/</code> or <code>/docs/*</code>. Prefix match; <code>*</code> matches anything. Empty = the whole site. Up to 20.</td></tr>
+  <tr><td>Never crawl these paths</td><td>One per line, e.g. <code>/cart</code>, <code>/*?sort=</code>. Up to 20.</td></tr>
+</table>
+<div class="note">The crawler only visits public addresses: private, local and internal IP addresses (<code>127.0.0.1</code>, <code>10.x</code>, <code>192.168.x</code>, <code>localhost</code>, <code>.local</code>…), URLs with credentials and ports other than 80, 443, 8080 and 8443 are refused, and every redirect hop is checked again. This stops customers from using your server to reach your internal network.</div>
+<p><strong>History and changes.</strong> Each finished audit lists the issues that are <strong>new</strong> since the previous finished audit and those that were <strong>fixed</strong>, and the score change. The history table lists earlier audits (date, pages, score, status, started by); click <em>View</em> to open one. Pages and issues of the last 10 finished audits per project are kept; older audits keep only their score. <strong>Issues (CSV)</strong> and <strong>Pages (CSV)</strong> export the current audit. On the <em>Issues</em> view, every issue explains why it matters and how to fix it, with the affected pages.</p>
+
+<h3 id="g-checks">Audit checks</h3>
+<p>The audit runs these <strong>57 checks</strong>: 9 critical, 24 warnings and 24 notices. Page checks run on every crawled page (content checks only on HTML pages that answered 200); the 8 site-wide checks run once per audit. Duplicate checks (titles, descriptions, H1) and thin content only look at indexable pages (200, no <code>noindex</code>, canonical to itself). Thresholds: title 30–60 characters, meta description 70–160 characters, thin content under 200 words, more than 150 links, URL longer than 115 characters, deeper than 4 clicks, HTML over 1 MB, time to first byte over 1.5 s, more than 25 scripts.</p>
+<table>
+  <tr><th>Code</th><th>Severity</th><th>Check</th><th>Meaning</th></tr>
+  <tr class="group"><th colspan="4">Indexability</th></tr>
+  <tr><td><code>http_4xx</code></td><td><span class="sev sev-critical">critical</span></td><td><strong>Page returns a 4xx error</strong></td><td>The page answers with a client error such as 404 Not Found, so search engines drop it and visitors hit a dead end.</td></tr>
+  <tr><td><code>http_5xx</code></td><td><span class="sev sev-critical">critical</span></td><td><strong>Page returns a server error (5xx)</strong></td><td>The server failed to deliver the page. Repeated server errors make search engines crawl less and drop pages.</td></tr>
+  <tr><td><code>fetch_error</code></td><td><span class="sev sev-critical">critical</span></td><td><strong>Page could not be loaded</strong></td><td>The crawler got no answer: a timeout, a refused connection, or a DNS or TLS error.</td></tr>
+  <tr><td><code>redirect_loop</code></td><td><span class="sev sev-critical">critical</span></td><td><strong>Redirect loop</strong></td><td>The URL redirects in a circle and never reaches a page. Browsers show an error and search engines give up.</td></tr>
+  <tr><td><code>redirect_chain</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>Redirect chain</strong></td><td>The URL passes through more than one redirect before the final page. Every hop slows visitors down and wastes crawl budget.</td></tr>
+  <tr><td><code>http_page</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>Page served over insecure HTTP</strong></td><td>This page loads over http:// without redirecting to https://, so browsers show a “Not secure” warning.</td></tr>
+  <tr><td><code>no_https</code></td><td><span class="sev sev-critical">critical</span></td><td><strong>Site doesn't use HTTPS</strong> <span class="muted">(site-wide)</span></td><td>The site is served over plain HTTP. Browsers mark it as not secure, and HTTPS is a ranking signal.</td></tr>
+  <tr><td><code>no_https_redirect</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>HTTP version doesn't redirect to HTTPS</strong> <span class="muted">(site-wide)</span></td><td>http:// still serves the homepage instead of redirecting, so two versions of the site exist.</td></tr>
+  <tr><td><code>noindex</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>Page blocked from indexing (noindex)</strong></td><td>A robots meta tag or an X-Robots-Tag header tells search engines not to index this page.</td></tr>
+  <tr><td><code>nofollow_page</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>Links on the page are nofollow</strong></td><td>The robots meta tag tells search engines not to follow any link on this page, so the pages it links to get no credit.</td></tr>
+  <tr><td><code>canonical_missing</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>Canonical tag missing</strong></td><td>Without a canonical link, search engines guess which URL is the main version when the same content is reachable at several URLs.</td></tr>
+  <tr><td><code>canonical_other</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>Canonical points to another page</strong></td><td>The page names another URL as its canonical, so search engines index that URL instead of this one.</td></tr>
+  <tr><td><code>canonical_broken</code></td><td><span class="sev sev-critical">critical</span></td><td><strong>Canonical points to a broken or redirected URL</strong></td><td>The canonical URL doesn't answer 200, so search engines may ignore the hint or drop both pages.</td></tr>
+  <tr><td><code>robots_txt_missing</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>robots.txt missing</strong> <span class="muted">(site-wide)</span></td><td>The site has no robots.txt file, so crawlers can't learn your rules or find your sitemap through it.</td></tr>
+  <tr><td><code>robots_txt_invalid</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>robots.txt is invalid</strong> <span class="muted">(site-wide)</span></td><td>robots.txt is not a plain-text rules file (for example it is an HTML page), so crawlers can't read its rules.</td></tr>
+  <tr><td><code>robots_txt_blocks_all</code></td><td><span class="sev sev-critical">critical</span></td><td><strong>robots.txt blocks the whole site</strong> <span class="muted">(site-wide)</span></td><td>robots.txt disallows every URL, so search engines can't crawl or rank the site.</td></tr>
+  <tr><td><code>sitemap_missing</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>XML sitemap missing</strong> <span class="muted">(site-wide)</span></td><td>No XML sitemap was found at /sitemap.xml or in robots.txt. Sitemaps help search engines find every page.</td></tr>
+  <tr><td><code>sitemap_invalid</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>XML sitemap is invalid</strong> <span class="muted">(site-wide)</span></td><td>The sitemap could not be read as a valid urlset or sitemap index (wrong format, an HTML page or a truncated file).</td></tr>
+  <tr><td><code>sitemap_bad_url</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>Sitemap lists a URL that isn't 200</strong></td><td>The XML sitemap contains a URL that redirects or returns an error. Sitemaps should only list final, indexable pages.</td></tr>
+  <tr><td><code>hreflang_invalid</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>Invalid hreflang code</strong></td><td>An hreflang link uses a language or region code that search engines don't understand (for example en-UK instead of en-GB).</td></tr>
+  <tr><td><code>hreflang_no_self</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>hreflang without a self-reference</strong></td><td>The page lists its language versions but not itself, which search engines may treat as an error.</td></tr>
+  <tr><td><code>hreflang_no_return</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>hreflang return link missing</strong></td><td>A language version doesn't link back to this page with hreflang, so search engines may ignore the pair.</td></tr>
+  <tr class="group"><th colspan="4">Content</th></tr>
+  <tr><td><code>title_missing</code></td><td><span class="sev sev-critical">critical</span></td><td><strong>Title tag missing or empty</strong></td><td>The page has no &lt;title&gt;. Search engines show something else in the results and lose an important relevance signal.</td></tr>
+  <tr><td><code>title_short</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>Title too short</strong></td><td>Titles under 30 characters use little of the space in search results and say little about the page.</td></tr>
+  <tr><td><code>title_long</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>Title too long</strong></td><td>Titles over 60 characters are usually cut off in search results.</td></tr>
+  <tr><td><code>title_duplicate</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>Duplicate title</strong></td><td>Several indexable pages share the same title, so search engines find it hard to tell them apart.</td></tr>
+  <tr><td><code>meta_desc_missing</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>Meta description missing</strong></td><td>Without a meta description, search engines pick text from the page for the snippet, which may not win the click.</td></tr>
+  <tr><td><code>meta_desc_short</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>Meta description too short</strong></td><td>Descriptions under 70 characters waste space in the search snippet.</td></tr>
+  <tr><td><code>meta_desc_long</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>Meta description too long</strong></td><td>Descriptions over 160 characters are usually truncated in search results.</td></tr>
+  <tr><td><code>meta_desc_duplicate</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>Duplicate meta description</strong></td><td>Several indexable pages share the same meta description.</td></tr>
+  <tr><td><code>h1_missing</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>H1 heading missing</strong></td><td>The page has no H1, the main heading that tells visitors and search engines what the page is about.</td></tr>
+  <tr><td><code>h1_multiple</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>Several H1 headings</strong></td><td>The page has more than one H1, which blurs its main topic.</td></tr>
+  <tr><td><code>h1_duplicate</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>Duplicate H1</strong></td><td>Several pages use the same H1 heading.</td></tr>
+  <tr><td><code>thin_content</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>Thin content</strong></td><td>The page has fewer than 200 words of text, which is often too little to rank or to help visitors.</td></tr>
+  <tr><td><code>img_alt_missing</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>Images without alt text</strong></td><td>Images without (or with an empty) alt text are invisible to screen readers and to image search.</td></tr>
+  <tr class="group"><th colspan="4">Links &amp; URLs</th></tr>
+  <tr><td><code>broken_internal_link</code></td><td><span class="sev sev-critical">critical</span></td><td><strong>Broken internal links</strong></td><td>The page links to pages of your site that return an error or don't load.</td></tr>
+  <tr><td><code>broken_external_link</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>Broken external links</strong></td><td>The page links to other websites that return 404, 410 or a server error, or no longer exist. (A sample of external links is checked.)</td></tr>
+  <tr><td><code>internal_redirect_link</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>Links to redirects</strong></td><td>The page links to URLs of your site that redirect, which adds a hop for visitors and crawlers.</td></tr>
+  <tr><td><code>too_many_links</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>Too many links on the page</strong></td><td>The page has more than 150 links, which dilutes the value passed to each one and overwhelms visitors.</td></tr>
+  <tr><td><code>url_uppercase</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>URL contains uppercase letters</strong></td><td>URLs are case-sensitive, so uppercase letters invite duplicate URLs and broken links.</td></tr>
+  <tr><td><code>url_underscores</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>URL contains underscores</strong></td><td>Search engines treat hyphens as word separators, but not underscores.</td></tr>
+  <tr><td><code>url_params</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>URL with query parameters</strong></td><td>Parameters such as ?id= often create many URLs for the same content and waste crawl budget.</td></tr>
+  <tr><td><code>url_too_long</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>URL too long</strong></td><td>URLs over 115 characters are hard to read and share and get cut off in search results.</td></tr>
+  <tr><td><code>orphan_page</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>Orphan page (in the sitemap, no internal links)</strong></td><td>The page is listed in the sitemap but no crawled page links to it, so visitors can't reach it and it gets little authority.</td></tr>
+  <tr><td><code>deep_page</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>Page more than 4 clicks deep</strong></td><td>Pages more than 4 clicks from the homepage are crawled less often and receive less authority.</td></tr>
+  <tr class="group"><th colspan="4">Performance</th></tr>
+  <tr><td><code>large_html</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>Large HTML page</strong></td><td>The HTML is larger than 1 MB, which slows loading, especially on mobile connections.</td></tr>
+  <tr><td><code>slow_ttfb</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>Slow server response</strong></td><td>The server took more than 1.5 seconds to start answering (time to first byte).</td></tr>
+  <tr><td><code>no_compression</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>No compression</strong></td><td>The HTML is sent without gzip or Brotli compression, so it takes longer to download.</td></tr>
+  <tr><td><code>too_many_scripts</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>Too many scripts</strong></td><td>The page loads more than 25 scripts, which slows down rendering and interaction.</td></tr>
+  <tr class="group"><th colspan="4">Technical</th></tr>
+  <tr><td><code>viewport_missing</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>Viewport meta tag missing</strong></td><td>Without a viewport tag, phones show the desktop layout zoomed out, which hurts mobile-first indexing.</td></tr>
+  <tr><td><code>lang_missing</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>Language not declared</strong></td><td>The &lt;html&gt; element has no lang attribute, which helps search engines, translation tools and screen readers.</td></tr>
+  <tr><td><code>mixed_content</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>Mixed content</strong></td><td>This https:// page loads images, scripts or styles over insecure http://, which browsers block or warn about.</td></tr>
+  <tr><td><code>jsonld_invalid</code></td><td><span class="sev sev-warning">warning</span></td><td><strong>Invalid structured data (JSON-LD)</strong></td><td>A JSON-LD block can't be parsed, so search engines ignore it and rich results are lost.</td></tr>
+  <tr><td><code>no_structured_data</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>No structured data</strong></td><td>The page has no JSON-LD structured data that could earn rich results.</td></tr>
+  <tr><td><code>favicon_missing</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>Favicon missing</strong> <span class="muted">(site-wide)</span></td><td>The site has no favicon, so search results and browser tabs show a generic icon.</td></tr>
+  <tr class="group"><th colspan="4">Social</th></tr>
+  <tr><td><code>og_missing</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>Open Graph tags missing</strong></td><td>og:title, og:description or og:image is missing, so links shared on social media look plain.</td></tr>
+  <tr><td><code>twitter_card_missing</code></td><td><span class="sev sev-notice">notice</span></td><td><strong>Twitter card missing</strong></td><td>Without a twitter:card tag, links shared on X show only a minimal preview.</td></tr>
+</table>
+<p>Broken external links count only clear failures (404, 410, 5xx or a host that doesn't exist); <code>401</code>, <code>403</code> and <code>429</code> answers are bot blocks, not broken links. <code>orphan_page</code> is only reported when the crawl reached every URL it found (not when the page limit stopped it).</p>
+
+<h3 id="g-score">Health score</h3>
+<p>The health score (0–100) summarises an audit. Each page-level issue has a weight by severity (critical 10, warning 3, notice 0.5); site-wide issues cost a fixed number of points (critical 8, warning 3, notice 1, at most 30 points together):</p>
+<div class="formula">density = Σ weights of all page-level issues ÷ pages crawled<br>
+page score = 100 ÷ (1 + density ÷ 10)<br>
+penalty = min(30, Σ site-wide penalties)<br>
+health score = round(page score − penalty), between 0 and 100</div>
+<p>A site with no issues scores 100. On average one critical issue per page halves the page score (50); one warning on every page gives 77; one notice on every page 95. A missing sitemap (warning, −3) or no HTTPS (critical, −8) costs the same on a small and a large site. Grades: <strong>Good</strong> 80–100 (green), <strong>Needs work</strong> 50–79 (amber), <strong>Poor</strong> below 50 (red).</p>
+
+<h3 id="g-gsc">Search Console tab</h3>
+<p>Requires a plan with <em>Google Search Console</em> and the administrator's <a href="#gsc-setup">Google setup</a>.</p>
+<ol class="steps">
+  <li>Open the project's <strong>Search Console</strong> tab and click <strong>Connect with Google</strong>. Sign in, allow “View Search Console data for your verified sites”.</li>
+  <li>Back in Searchzen, the property is picked automatically when exactly one property matches the project's domain (a <em>domain property</em> <code>sc-domain:example-shop.com</code> is preferred). Otherwise choose it in <strong>Choose the Search Console property</strong>; properties that match the domain are marked ✓.</li>
+  <li>The last <strong>90 days</strong> are imported right away (newest first, 10 days per step), then the last 3 days are refreshed once a day. Search Console data is about two days behind.</li>
+</ol>
+<p>The tab shows clicks, impressions, CTR and average position for 7, 28 or 90 days, a chart, and the <strong>top queries and pages</strong> (up to 250 queries and 100 pages per day are stored), with a filter and CSV export. <strong>Track</strong> adds a query to the tracked keywords in one click. <strong>Import now</strong> refreshes immediately. One Google account can serve several projects; <strong>Connect another Google account</strong> adds more. <strong>Remove</strong> detaches the property from the project and deletes its imported data; <strong>Disconnect</strong> (under Google accounts) revokes Searchzen's access at Google and stops all projects that used that account (their imported rows are kept). If Google stops accepting the access (the user removed it in their Google account, changed their password, or didn't use it for six months), the connection shows <em>Disconnected</em>, imports stop and the owner gets one email: click <strong>Reconnect</strong>.</p>
+
+<h3 id="g-reports">Client reports</h3>
+<p>The <strong>Reports</strong> tab manages the shared report, scheduled emails and the badge.</p>
+<ul>
+  <li><strong>Share link.</strong> Click <em>Create a share link</em> to get a public, read-only address <code>https://seo.example.com/r/&lt;token&gt;</code> with the project's rankings (summary, visibility, top 3/10/100, the keyword table), the latest audit (score, change, top issues) and Search Console data, for the last 7, 30 or 90 days. Reports are <code>noindex</code>. <em>New link</em> replaces the address (the old link and the badge stop working); <em>Turn sharing off</em> disables both. <em>Preview</em> shows the report as clients see it.</li>
+  <li><strong>Password.</strong> Optional, 4–100 characters. Visitors enter it once; a signed cookie keeps the report open on that browser for 30 days. Changing or removing the password logs everyone out. 10 wrong attempts per 10 minutes are allowed per visitor.</li>
+  <li><strong>Print to PDF.</strong> The report has a <em>Download PDF</em> button that opens the browser's print dialog; choose <em>Save as PDF</em>. The page has a print layout (no buttons or menus; table rows and blocks are not split across pages). No server-side PDF engine is needed.</li>
+  <li><strong>Scheduled report emails.</strong> Up to 5 schedules per project, weekly (Mondays) or monthly (the 1st) at 07:00 UTC, each to up to 10 addresses. The email contains the summary and a link to the full report (creating a schedule turns sharing on). Weekly emails cover the last 7 days, monthly ones 30. <em>Send a test to me</em> sends one to your own address. Needs SMTP.</li>
+  <li><strong>White-label.</strong> On plans with <em>White-label reports</em> (Agency by default), Project settings → Report branding sets the company name (“Prepared by …”), accent colour and logo (URL or upload, PNG/JPG/WebP/GIF up to 1 MB) on the report and report emails, and the platform's “Powered by” line is hidden. Other plans show your platform's name and logo.</li>
+</ul>
+
+<h3 id="g-badge">SEO health badge</h3>
+<p>Customers can show their latest health score on any website. The badge uses the report's share token, so it only works while sharing is on. Copy one of the snippets from Reports → <em>SEO health badge</em>:</p>
+<pre><code>&lt;!-- Script badge (about 1 KB, never breaks the page) --&gt;
+&lt;script async src="https://seo.example.com/sz-badge.js" data-project="SHARE_TOKEN"&gt;&lt;/script&gt;
+
+&lt;!-- Image badge (no JavaScript) --&gt;
+&lt;a href="https://seo.example.com/r/SHARE_TOKEN"&gt;
+  &lt;img src="https://seo.example.com/api/badge/SHARE_TOKEN.svg" alt="SEO health" height="20"&gt;
+&lt;/a&gt;</code></pre>
+<p>The script inserts a small “SEO health 87/100” pill after the script tag, coloured green (80+), amber (50–79) or red, linking to the report. Options: <code>data-theme="dark"</code>, <code>data-label="…"</code>. The image accepts <code>?theme=dark</code> and <code>?label=…</code>. The data comes from <code>GET /api/badge/&lt;token&gt;</code> (JSON <code>{ score, label, url }</code>, open to all origins) and is cached for 5 minutes in browsers and 10 minutes on CDNs, so a new score appears within minutes after an audit. The script sends no cookies.</p>
+
+<h3 id="g-digest">Weekly digest</h3>
+<p>Every Monday from 07:00 UTC, each customer with at least one active project gets one email covering all their projects: keyword movements (up and down) with the biggest movers, average position, the site health score and its change, and Search Console clicks compared with the week before. Customers turn it off with the <em>Email me a weekly digest</em> switch on the dashboard home (the email links there). You can turn it off for the whole platform in Admin → Settings → SEO tools. It needs SMTP and the scheduler.</p>
+
+<!-- ───────────────────────────── REST API ───────────────────────────── -->
+<h2 id="api">REST API</h2>
+<p>Customers on plans with <em>REST API</em> create keys in <strong>Dashboard → API keys</strong> (a key is shown only once; it starts with <code>sz_</code>). A key can access every project of its account. The API is at <code>https://seo.example.com/api/v1</code>; send JSON and the key as a Bearer token:</p>
+<pre><code>curl https://seo.example.com/api/v1/projects \
+  -H "Authorization: Bearer sz_your_api_key"</code></pre>
+<p>The API keys page shows ready-made <code>curl</code> examples with the customer's own project id.</p>
+
+<h3>Endpoints</h3>
+<table>
+  <tr><th>Method and path</th><th>Description</th></tr>
+  <tr><td><code>GET /api/v1/projects</code></td><td>The account's projects with their keyword counts.</td></tr>
+  <tr><td><code>GET /api/v1/projects/{id}</code></td><td>One project with its settings, ranking summary (ranked, top 3, top 10, average position, visibility, keywords up/down in 7 days), the last audit and Search Console totals of the last 28 days.</td></tr>
+  <tr><td><code>GET /api/v1/keywords?project_id=</code></td><td>Keywords of a project. Optional: <code>status=active|paused</code>, <code>tag=</code>, <code>search=</code>, <code>sort=phrase|position|best|created</code>, <code>limit</code> (1–500, default 50), <code>offset</code>.</td></tr>
+  <tr><td><code>POST /api/v1/keywords</code></td><td>Add up to 1,000 keywords. Duplicates are skipped; the plan's keyword limit applies.</td></tr>
+  <tr><td><code>GET /api/v1/keywords/{id}/history?days=30</code></td><td>Daily positions (1–400 days), oldest first, with the ranking URL, SERP features and competitor positions.</td></tr>
+  <tr><td><code>POST /api/v1/keywords/check</code></td><td>Check keywords now: <code>{"keyword_ids": [1, 2]}</code> or <code>{"project_id": 1}</code> (its first 100 active keywords). Waits for the checks (up to about 40 seconds).</td></tr>
+  <tr><td><code>POST /api/v1/audits</code></td><td>Start a site audit: <code>{"project_id": 1}</code>. Answers <code>202</code> with the queued audit.</td></tr>
+  <tr><td><code>GET /api/v1/audits/{id}</code></td><td>Status, progress, score, issue summary and change since the previous audit.</td></tr>
+  <tr><td><code>GET /api/v1/audits/{id}/issues</code></td><td>Issues of an audit. Optional: <code>severity=critical|warning|notice</code>, <code>code=title_missing</code>, <code>change=all|new|fixed</code>, <code>limit</code>, <code>offset</code>.</td></tr>
+</table>
+
+<h3>Examples</h3>
+<h4>Add keywords</h4>
+<pre><code>curl -X POST https://seo.example.com/api/v1/keywords \
+  -H "Authorization: Bearer sz_your_api_key" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "project_id": 12,
+    "country": "US", "language": "en", "device": "desktop", "tags": ["shoes"],
+    "keywords": [
+      "running shoes",
+      { "phrase": "trail running shoes", "device": "mobile", "location": "Austin,Texas,United States",
+        "tags": ["trail"], "target_url": "https://example-shop.com/trail" }
+    ]
+  }'</code></pre>
+<p>Top-level <code>country</code>, <code>language</code>, <code>device</code>, <code>location</code> and <code>tags</code> are defaults for the list; an object can override them. Missing values use the project's defaults. Answer (<code>201</code> when something was added, otherwise <code>200</code>):</p>
+<pre><code>{
+  "added": 2, "duplicates": 0, "invalid": 0, "over_limit": 0,
+  "data": [
+    { "id": 341, "project_id": 12, "phrase": "running shoes", "country": "US", "language": "en",
+      "device": "desktop", "location": "", "tags": ["shoes"], "target_url": null, "status": "active",
+      "position": null, "best_position": null, "url": null, "last_checked_at": null },
+    …
+  ]
+}</code></pre>
+<p>Keyword objects in every answer have these fields; <code>position</code> is <code>null</code> when the keyword is not ranked within the checked depth or not checked yet.</p>
+<h4>Keyword history</h4>
+<pre><code>curl "https://seo.example.com/api/v1/keywords/341/history?days=7" -H "Authorization: Bearer sz_your_api_key"
+
+{ "data": { "keyword": { "id": 341, … }, "days": 7,
+  "history": [
+    { "day": "2026-10-18", "position": 9, "url": "https://example-shop.com/shoes",
+      "features": ["people_also_ask", "shopping"], "competitors": { "rival.com": 4 },
+      "checked_at": "2026-10-18T06:02:11.000Z" }, … ] } }</code></pre>
+<h4>Check now</h4>
+<pre><code>curl -X POST https://seo.example.com/api/v1/keywords/check \
+  -H "Authorization: Bearer sz_your_api_key" -H "Content-Type: application/json" \
+  -d '{"keyword_ids": [341, 342]}'
+
+{ "checked": 2, "failed": 0, "skipped": 0, "skipped_ids": [], "alerts": 1 }</code></pre>
+<p>Keywords checked in the last 10 minutes, paused keywords and keywords of paused projects are skipped (<code>skipped_ids</code>). At most 100 keywords per request and 10 requests per minute per account.</p>
+<h4>Start an audit and read its issues</h4>
+<pre><code>curl -X POST https://seo.example.com/api/v1/audits \
+  -H "Authorization: Bearer sz_your_api_key" -H "Content-Type: application/json" \
+  -d '{"project_id": 12}'
+
+{ "data": { "id": 88, "project_id": 12, "status": "queued", "trigger": "api", "pages_crawled": 0,
+  "pages_limit": 1000, "queued_urls": 0, "score": null,
+  "summary": { "critical": 0, "warning": 0, "notice": 0, "by_code": {}, "pages_with_issues": 0, "pages_with_critical": 0 },
+  "change": null, "error": null, "created_at": "…", "started_at": null, "finished_at": null } }
+
+curl "https://seo.example.com/api/v1/audits/88" -H "Authorization: Bearer sz_your_api_key"
+curl "https://seo.example.com/api/v1/audits/88/issues?severity=critical&amp;change=new" -H "Authorization: Bearer sz_your_api_key"
+
+{ "data": [ { "id": 5512, "code": "broken_internal_link", "severity": "critical", "category": "links",
+  "url": "https://example-shop.com/blog/", "details": { "count": 2, "url": "https://example-shop.com/old", "status": 404 },
+  "is_new": true } ], "total": 1, "limit": 50, "offset": 0 }</code></pre>
+<p>Audit <code>status</code> goes <code>queued</code> → <code>crawling</code> → <code>analyzing</code> → <code>done</code> (or <code>failed</code> / <code>cancelled</code>). Poll <code>GET /api/v1/audits/{id}</code> every minute or so; <code>change</code> has <code>previous_audit_id</code>, <code>previous_score</code>, <code>new_issues</code> and <code>fixed_issues</code> once the audit is done. Site-wide issues have <code>"url": null</code>; <code>is_new</code> is <code>null</code> for a project's first audit.</p>
+
+<h3>Errors and limits</h3>
+<p>Errors are JSON <code>{"error": "message"}</code>:</p>
+<table>
+  <tr><th>Status</th><th>Meaning</th></tr>
+  <tr><td><code>401</code></td><td>Missing or invalid API key (“Missing API key. Send it as: Authorization: Bearer &lt;key&gt;”).</td></tr>
+  <tr><td><code>403</code></td><td>The account is not active, the plan has no REST API access, the plan's keyword limit is reached, or the monthly audit quota is used up.</td></tr>
+  <tr><td><code>404</code></td><td>Unknown id, or a project / keyword / audit of another account.</td></tr>
+  <tr><td><code>409</code></td><td>An audit of this project is already running (the answer includes <code>audit_id</code>), the project is paused, or rank checks are not set up / paused on the platform (check now).</td></tr>
+  <tr><td><code>413</code></td><td>Request body larger than 256 KB.</td></tr>
+  <tr><td><code>422</code></td><td>Invalid input (the message says which field).</td></tr>
+  <tr><td><code>429</code></td><td>Rate limit: 600 requests per minute per key; check now 10 per minute per account; audits 10 starts per hour per account. Wait for <code>Retry-After</code> seconds.</td></tr>
+</table>
+
+<!-- ───────────────────────────── Admin ───────────────────────────── -->
+<h2 id="admin">Admin panel</h2>
+<p>Open <code>/admin</code> while signed in as an administrator. The menu has Dashboard, Users, Plans, Payments, Pages, Blog, Languages, Messages, Settings and System. Administrators also have a customer dashboard (<code>/dashboard</code>) for their own projects, without plan limits and with every feature.</p>
+<ul>
+  <li><strong>Dashboard:</strong> users (and new users in the last 30 days), active paid plans, revenue this month, rank checks in the last 30 days with the number of projects and tracked keywords, a chart of daily rank checks for the last 14 days, the <em>Finish setting up</em> checklist (site URL, brand, payment gateway, SMTP, first project), the largest projects, the newest users and the latest payments. Banners show bank transfers waiting for approval and unread messages.</li>
+  <li><strong>Users:</strong> search and filter; edit name, email, role (user or admin) and status (active or banned), set a new password, or give a paid plan until a date you choose (bank transfers, gifts, testing). <strong>Banning</strong> signs the user out, blocks sign-in and their API keys, and stops the rank checks of their projects. <strong>Deleting</strong> removes the account with its projects (keywords, rankings, audits, Search Console data, report schedules), alert channels, API keys, Google connections and usage counters; their <strong>payments are kept</strong> for your accounting.</li>
+  <li><strong>Payments:</strong> every payment from every gateway, with a filter by status. Bank transfers wait here with the customer's reference: <em>Approve</em> activates the plan, <em>Reject</em> declines it.</li>
+  <li><strong>Pages</strong> (Markdown, at <code>/p/your-slug</code>, optionally in the footer; <code>{site_name}</code> and <code>{site_email}</code> are replaced), <strong>Blog</strong> (Markdown posts at <code>/blog/your-slug</code> with cover image, meta description and scheduled publishing; starter posts about SEO are included) and <strong>Messages</strong> (contact-form submissions). Review the default Privacy policy and Terms before launch (see <a href="#privacy">Privacy</a>).</li>
+</ul>
+<div class="note">A ban does not stop scheduled audits, Search Console imports or scheduled report emails of the user's projects, and their shared report links stay online. To stop everything for an abusive account, delete it.</div>
+
+<h3 id="admin-plans">Plans &amp; limits</h3>
+<p>The installer creates three plans. Prices are in your currency (Settings → Payments). Adjust them to your <a href="#serp-depth">SERP costs</a> before launch.</p>
+<table>
+  <tr><th>Plan</th><th>Price</th><th>Projects</th><th>Keywords</th><th>Checks</th><th>Pages / audit</th><th>Audits / month</th><th>Search Console</th><th>API</th><th>White-label</th><th>Branding</th></tr>
+  <tr><td><strong>Free</strong></td><td>0</td><td>1</td><td>10</td><td>Weekly</td><td>100</td><td>2</td><td>No</td><td>No</td><td>No</td><td>Shown</td></tr>
+  <tr><td><strong>Pro</strong> <span class="tag">Recommended</span></td><td>19 / month or 190 / year</td><td>5</td><td>300</td><td>Daily</td><td>1,000</td><td>20</td><td>Yes</td><td>Yes</td><td>No</td><td>Shown</td></tr>
+  <tr><td><strong>Agency</strong></td><td>49 / month or 490 / year</td><td>25</td><td>2,000</td><td>Daily</td><td>5,000</td><td>100</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Removed</td></tr>
+</table>
+<table>
+  <tr><th>Field</th><th>Meaning</th></tr>
+  <tr><td>Name, short description, sort order</td><td>Shown on the pricing page; lower numbers first.</td></tr>
+  <tr><td>Monthly price, yearly price</td><td><code>0</code> hides that billing period.</td></tr>
+  <tr><td>Projects</td><td>Websites per account. <strong>0 = unlimited.</strong></td></tr>
+  <tr><td>Tracked keywords</td><td>All projects of the account together (active and paused). <strong>0 = unlimited.</strong></td></tr>
+  <tr><td>Rank checks</td><td>Daily or weekly: the fastest schedule allowed. With weekly, every keyword is checked weekly whatever the project setting.</td></tr>
+  <tr><td>Pages per site audit</td><td>Pages crawled in one audit. <strong>0 = unlimited</strong>: audits then crawl 500 pages unless the project asks for more (hard cap 50,000).</td></tr>
+  <tr><td>Site audits per month</td><td>Audits started per calendar month (UTC), all projects together, manual, scheduled and API. <strong>0 = unlimited.</strong></td></tr>
+  <tr><td>Google Search Console, REST API, White-label reports</td><td>Feature switches (see the <a href="#guide">User guide</a>).</td></tr>
+  <tr><td>Features</td><td>One per line, shown with a tick on the pricing page. <strong>Display text only</strong>: only the limits and switches above are enforced. Keep them in line.</td></tr>
+  <tr><td>Remove branding</td><td>Hides your “Powered by” line in shared reports and report emails. White-label plans hide it too.</td></tr>
+  <tr><td>Recommended, Show on pricing page, This is the free plan</td><td>Highlight; hidden plans can still be given by an administrator; mark exactly one free plan (its limits apply to everyone without an active paid plan).</td></tr>
+</table>
+<h4>When a limit is reached</h4>
+<ul>
+  <li><strong>Projects / keywords:</strong> new ones can't be added (dashboard, CSV and API say how many were over the limit).</li>
+  <li><strong>Audits per month:</strong> new audits can't be started (manual, scheduled or API) until the 1st of the next month (UTC) or an upgrade.</li>
+  <li>When a paid plan ends, the customer moves back to the free plan: keywords above the free limit (the newest ones) are paused at the next check, checks become weekly, Search Console imports pause (imported data stays visible), API keys stop working and reports lose the white-label branding. Projects are kept.</li>
+  <li>Administrators have no limits.</li>
+</ul>
+
+<h3 id="admin-settings">Settings</h3>
+<table>
+  <tr><th>Section</th><th>What you configure</th></tr>
+  <tr><td>General</td><td>Site name, tagline, <strong>Site URL</strong>, contact email, logo (light and dark), favicon, footer text, copyright line, blog on/off.</td></tr>
+  <tr><td>Appearance</td><td>Brand colour, default theme (light/dark/follow the device), home page headline and introduction, benefits strip.</td></tr>
+  <tr><td>SEO</td><td>Home title and description, keywords, title separator, social image, Google/Bing verification, extra robots.txt rules.</td></tr>
+  <tr><td><strong>SEO tools</strong></td><td><em>Run background jobs on visits</em> (<a href="#sched-lazy">lazy mode</a>, default on), <em>Branding text</em> (default “Powered by Searchzen”, shown in shared reports and emails; empty = never shown), <em>Branding link</em> (empty = your Site URL), <em>Send the weekly digest email</em> (default on).</td></tr>
+  <tr><td><strong>Rank tracking</strong></td><td>SERP provider, API keys, depth, run limits, test, status and usage (see <a href="#serp">SERP providers</a>).</td></tr>
+  <tr><td><strong>Google</strong></td><td>OAuth client ID and secret for Search Console (see <a href="#gsc-setup">Google Search Console setup</a>).</td></tr>
+  <tr><td>Payments</td><td>Currency of your plans and the four gateways (see <a href="#payments">Payment gateways</a>).</td></tr>
+  <tr><td>Email</td><td>SMTP server (see <a href="#email">Email</a>).</td></tr>
+  <tr><td>Users</td><td>Open/close registration, contact page, cookie notice on your own site.</td></tr>
+  <tr><td>Advanced</td><td>Maintenance mode, extra code in <code>&lt;head&gt;</code>, additional code (chat widgets).</td></tr>
+</table>
+<div class="note">Maintenance mode only hides your public marketing pages from visitors who aren't administrators.</div>
+
+<h3 id="admin-system">System &amp; scheduler</h3>
+<p>The <strong>Scheduler</strong> card is the health check of the background jobs: the badge (<em>Running</em> = a tick finished in the last 3 minutes, <em>Stalled</em>, <em>Never ran</em>), the last run and its source (<code>cron</code>, <code>worker</code>, <code>lazy</code>, <code>manual</code>), the last result per job (red = failed, details in the server log), <strong>Run jobs now</strong> (one tick with a 25-second budget, ignoring the jobs' intervals), the cron URL with a Copy button and a ready-made cron line, and <strong>New secret</strong>. The <strong>Background jobs</strong> card shows each job and its next run.</p>
+<p>The other cards show the version, Node.js, database type, storage folder, environment, demo mode and email status; <strong>Data</strong> (projects, keywords and active keywords, keywords due for a check, ranking rows, SERP snapshots, audits, audited pages, crawl queue entries, audit issues, Search Console rows, alert log entries); the applied database migrations; maintenance tools (reload settings, delete expired sessions); and an <strong>Email test</strong>.</p>
+
+<!-- ───────────────────────────── Payments ───────────────────────────── -->
+<h2 id="payments">Payment gateways (for your plans)</h2>
+<p>These gateways collect <strong>your</strong> plan fees from customers. Choose your <strong>currency</strong> in Settings → Payments first; it must be supported by every gateway you enable.</p>
+<h3 id="pay-stripe">Stripe (cards, Apple Pay, Google Pay – automatic renewal)</h3>
+<ol class="steps">
+  <li>In the Stripe Dashboard open <strong>Developers → API keys</strong> and copy the <em>Secret key</em> (<code>sk_live_…</code>, or <code>sk_test_…</code> for testing).</li>
+  <li>Open <strong>Developers → Webhooks → Add endpoint</strong>: URL <code>https://seo.example.com/api/payments/stripe/webhook</code>, events <code>invoice.paid</code>, <code>checkout.session.completed</code>, <code>customer.subscription.deleted</code>. Copy the <em>Signing secret</em> (<code>whsec_…</code>).</li>
+  <li>In Settings → Payments switch on Stripe, paste both keys and save.</li>
+</ol>
+<p>You don't have to create products or prices in Stripe; they are sent with each checkout from your plans. Customers can cancel automatic renewal from their account page and keep access until the end of the paid period.</p>
+<h3 id="pay-paypal">PayPal</h3>
+<ol class="steps">
+  <li>Go to <a href="https://developer.paypal.com/">developer.paypal.com</a> → <strong>Apps &amp; Credentials</strong>, create an app and copy the <em>Client ID</em> and <em>Secret</em> (Sandbox for testing, Live for real payments).</li>
+  <li>In Settings → Payments switch on PayPal, select the matching mode and paste both values.</li>
+</ol>
+<p>PayPal payments are one-off: a monthly or yearly purchase adds that period to the customer's plan.</p>
+<h3 id="pay-razorpay">Razorpay (India: UPI, cards, netbanking)</h3>
+<ol class="steps">
+  <li>In the Razorpay Dashboard open <strong>Account &amp; Settings → API Keys</strong> and generate a key.</li>
+  <li>Paste the <em>Key ID</em> and <em>Key secret</em> in Settings → Payments and switch Razorpay on. Set the currency to INR.</li>
+</ol>
+<h3 id="pay-offline">Bank transfer</h3>
+<p>Switch on <em>Bank transfer</em> and write your bank details in <em>Payment instructions</em>. Customers submit their transaction reference; you approve it in Admin → Payments.</p>
+
+<!-- ───────────────────────────── Email ───────────────────────────── -->
+<h2 id="email">Email (SMTP)</h2>
+<p>Email is <strong>needed</strong> for password resets, email alert channels, scheduled client reports, the weekly digest, the “Search Console was disconnected” notice and contact-form messages. Without SMTP these are skipped (scheduled reports are logged as failed and move on to their next date), and the dashboard tells customers that email isn't set up.</p>
+<p>Enter your SMTP details in Settings → Email and switch on <em>Send emails</em>. Any provider works: your hosting mailbox, Gmail with an app password, Brevo, Mailgun, Amazon SES, Postmark… Use port 587 with SSL off (STARTTLS), or port 465 with SSL on. Send a test from Admin → System → Email test.</p>
+<p>Reports and digests go to many recipients. Use a transactional email provider and a sender address on your own domain with SPF, DKIM and DMARC, so emails don't land in spam.</p>
+
+<!-- ───────────────────────────── i18n ───────────────────────────── -->
+<h2 id="i18n">Languages &amp; RTL</h2>
+<ol class="steps">
+  <li>Open <strong>Admin → Languages</strong> and add a language. Pick one from the list (the code, names and text direction are filled in) or enter your own, e.g. <code>pt-BR</code>.</li>
+  <li>Click <strong>Translate</strong>. Texts are grouped into <em>Interface</em> (the public site, sign-in pages, checkout, the dashboard, shared reports and emails) and <em>Site texts</em> (tagline, headline, footer and SEO texts from Settings). Search, show untranslated texts only, and save page by page.</li>
+  <li>Switch the language to <strong>Active</strong>. With two or more active languages, visitors get a language switcher; their choice is remembered in a cookie.</li>
+  <li>Choose the <strong>default language</strong> for visitors who haven't picked one. Emails (digest, scheduled reports, notices) are written in the default language.</li>
+</ol>
+<p>Anything you leave empty falls back to English. To translate offline, click <strong>Download template</strong> (a JSON file with every text), translate the values, keep the keys, and upload it with <strong>Import</strong>. <strong>Export</strong> downloads the translations you have so far. You can also change the English wording itself.</p>
+<p>Right-to-left languages (Arabic, Hebrew, Persian, Urdu) flip the public site, the dashboard and the reports automatically. The admin panel and alert channel messages (Slack, webhooks…) stay in English. Country and language names, numbers and dates follow the reader's language. The package includes <strong>Arabic</strong> (right-to-left) and <strong>Hindi</strong> packs in <code>searchzen/languages/ar.json</code> and <code>hi.json</code>. To install one, add the language in Admin → Languages (code <code>ar</code> or <code>hi</code>), open <strong>Translate</strong>, click <strong>Import</strong> and choose the file, then switch the language to Active. The live demo installs both packs automatically.</p>
+
+<!-- ───────────────────────────── SEO ───────────────────────────── -->
+<h2 id="seo">SEO</h2>
+<ul>
+  <li>The home page, pricing page, blog and content pages have titles, descriptions and Open Graph tags. Set them in Settings → SEO.</li>
+  <li><code>/sitemap.xml</code> and <code>/robots.txt</code> are generated automatically. Submit the sitemap in Google Search Console. Set the <strong>Site URL</strong> so canonical URLs and the sitemap use your domain.</li>
+  <li>Blog posts get article structured data, Open Graph tags and sitemap entries. Starter posts about rank tracking and technical SEO are included; edit them to your brand.</li>
+  <li>Shared reports (<code>/r/…</code>) are <code>noindex</code>, so clients' reports never appear in search results. Admin, account, dashboard, checkout and API addresses are blocked in robots.txt.</li>
+  <li>Use Searchzen on your own platform: create a project for your domain and track your own keywords.</li>
+</ul>
+
+<!-- ───────────────────────────── Privacy ───────────────────────────── -->
+<h2 id="privacy">Privacy</h2>
+<div class="warn"><p><strong>Not legal advice.</strong> You are responsible for your platform: your Privacy policy, terms and any data processing agreement with customers. The default Privacy policy page (<code>/p/privacy-policy</code>) is a starting point that describes rankings, audits, Search Console, shared reports and cookies; add your company details and review it with a lawyer.</p></div>
+<h3>The crawler</h3>
+<ul>
+  <li>The site audit crawler visits the <strong>public pages</strong> of the website a customer enters, like a search engine. It identifies itself as <code>SearchzenBot/1.0 (+your Site URL)</code> (unless the customer chooses the browser identity), obeys robots.txt and its <code>Crawl-delay</code>, and can be slowed down per project.</li>
+  <li>It does not log in, submit forms, run JavaScript or download images and files. It stores technical facts per page (URL, status code, redirects, size, timing, title, description, headings, canonical, robots directives, language, link and image counts, structured-data types, Open Graph and Twitter tags) and the issues found, not page content.</li>
+  <li>Customers can audit any public website, not only their own. If a site owner complains, ask the customer to stop, or delete the project. Site owners can block the crawler in robots.txt with <code>User-agent: SearchzenBot</code> / <code>Disallow: /</code>.</li>
+</ul>
+<h3 id="privacy-gsc">Search Console data &amp; Google's Limited Use requirements</h3>
+<p>When you publish your Google OAuth app, Google requires that your use of data from Google APIs follows the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the <strong>Limited Use</strong> requirements. Searchzen is built for this:</p>
+<ul>
+  <li>Access is <strong>read-only</strong> (<code>webmasters.readonly</code>), plus the account's email address to show which account is connected.</li>
+  <li>Imported data (daily totals, top queries and pages per property) is used only to show the customer's own dashboard, the reports they choose to share, alerts and digests. It is not sold, not used for advertising and not shared with anyone else.</li>
+  <li>Refresh tokens are encrypted at rest; access tokens live only in memory. <em>Disconnect</em> revokes access at Google and deletes the token; <em>Remove</em> deletes the imported data of a project; deleting a project or account deletes everything.</li>
+</ul>
+<p>Your privacy policy must say this too (the default page does), and you must not use the data for anything else, for example training models or building marketing lists. Your staff should only look at customers' Search Console data with their permission, for security reasons or when the law requires it.</p>
+<h3>Sub-processors and third parties</h3>
+<table>
+  <tr><th>Service</th><th>What it receives</th></tr>
+  <tr><td>Your SERP provider (Serper.dev, SerpApi, DataForSEO or ValueSERP)</td><td>Keywords with country, language, device and location (DataForSEO also the project's domain, to stop paging when it is found). No customer names or emails.</td></tr>
+  <tr><td>Google (Search Console API, OAuth)</td><td>The sign-in of customers who connect Search Console, and API requests for their properties.</td></tr>
+  <tr><td>Your hosting and database provider</td><td>Everything stored by the platform.</td></tr>
+  <tr><td>Your SMTP provider</td><td>Email addresses and the content of emails (alerts, reports, digests, password resets).</td></tr>
+  <tr><td>Slack, Discord, Microsoft Teams, Telegram, webhook URLs</td><td>Alert messages, only for channels the customer created.</td></tr>
+  <tr><td>Stripe, PayPal, Razorpay</td><td>Payment details of your customers' plan purchases (you never see card numbers).</td></tr>
+</table>
+<h3>What the platform stores and its cookies</h3>
+<ul>
+  <li>Account data: names, emails, scrypt password hashes, payments, contact messages, API key hashes, and for sessions the IP address and user agent.</li>
+  <li>Cookies: <code>tz_session</code> (sign-in), <code>tz_lang</code> (language), <code>sz_gsc_state</code> (the 15-minute Google sign-in flow) and <code>sz_r_&lt;token&gt;</code> (30 days, only after entering a report password). Theme and cookie-notice choices are kept in the browser's local storage. No advertising or analytics cookies.</li>
+  <li>The SEO health badge on customers' websites loads from your platform without cookies; your server sees the visitor's IP address only for rate limiting (in memory).</li>
+</ul>
+
+<!-- ───────────────────────────── Performance ───────────────────────────── -->
+<h2 id="performance">Performance &amp; data retention</h2>
+<p>One ranking row is stored per keyword and day (the last check of the day wins), so 10,000 keywords checked daily add about 3.6 million rows a year; MySQL handles this easily with the included indexes.</p>
+<table>
+  <tr><th>Data</th><th>Kept</th></tr>
+  <tr><td>Rankings (position, URL, SERP features, competitor positions per keyword and day)</td><td>For good, until the keyword, project or account is deleted.</td></tr>
+  <tr><td>SERP snapshots (the top 20 results of a check)</td><td>30 days (one per keyword and day), then deleted by <code>housekeeping</code>.</td></tr>
+  <tr><td>Site audits</td><td>Pages and issues of the <strong>last 10 finished audits</strong> per project (done, failed or cancelled); older audits keep only their score and summary, so the score history stays complete.</td></tr>
+  <tr><td>Crawl queue</td><td>Deleted when an audit is cancelled or fails, and with old audits.</td></tr>
+  <tr><td>Search Console rows</td><td>About 16 months (490 days), like Search Console itself.</td></tr>
+  <tr><td>Provider usage (requests, errors, credits per provider and day)</td><td>For good (one small row per provider and day); the admin page shows the last 30 days.</td></tr>
+  <tr><td>Alert log</td><td>90 days.</td></tr>
+  <tr><td>Expired sessions and password reset links</td><td>Deleted by <code>housekeeping</code>.</td></tr>
+</table>
+<ul>
+  <li><strong>One process:</strong> keep one app process (<code>instances: 1</code>); rate limits are per process.</li>
+  <li><strong>SQLite</strong> is fine for testing and small platforms; use MySQL/MariaDB for production.</li>
+  <li><strong>Big audits</strong> (thousands of pages) are analysed in one step at the end, which needs some memory and CPU for a few seconds. On small servers keep <em>Pages per site audit</em> moderate in your plans.</li>
+  <li><strong>Many keywords:</strong> use the worker and raise <em>Checks per run</em> and <em>Parallel requests</em> (see <a href="#serp-run">Run limits</a>) within your provider's rate limit.</li>
+  <li>Rate limits use the connecting IP address from <code>X-Forwarded-For</code>. Set <a href="#env"><code>TRUSTED_PROXY_HOPS</code></a> correctly when you use Cloudflare in front of Nginx.</li>
+</ul>
+
+<!-- ───────────────────────────── Customise ───────────────────────────── -->
+<h2 id="customize">Customisation</h2>
+<h3>Branding without code</h3>
+<p>Logo, favicon, colours, texts, plans, pages, blog, the branding line in reports and emails, and all interface texts (through Admin → Languages → English) are editable in the admin panel.</p>
+<h3>Code structure</h3>
+<table>
+  <tr><th>Path</th><th>Contents</th></tr>
+  <tr><td><code>src/seo/types.ts</code></td><td>The contract: project settings, keyword input, devices, SERP features, depths, <code>SerpProvider</code> and <code>SerpProviderError</code>, audit checks and severities, alert rules, channels and payload, REST API shapes. Dependency-free.</td></tr>
+  <tr><td><code>src/seo/normalize.ts</code></td><td>Validation (domains, keywords, tags, countries, languages, settings), <code>positionChange()</code>, the CTR curve and <code>visibilityScore()</code>, <code>healthScore()</code>, schedules and retry delays.</td></tr>
+  <tr><td><code>src/lib/serp/</code></td><td><code>index.ts</code> (provider registry, settings, pause, usage), <code>parse.ts</code> (<code>ResultCollector</code>, paging, error mapping), <code>http.ts</code> (guarded fetch), <code>providers/*.ts</code> (one adapter per provider).</td></tr>
+  <tr><td><code>src/lib/rank/</code></td><td><code>check.ts</code> (the check engine for jobs, “Check now” and the API), <code>transitions.ts</code> (alert rules), <code>queries.ts</code> (history, KPIs, competitors), <code>csv.ts</code>.</td></tr>
+  <tr><td><code>src/lib/audit/</code></td><td><code>crawler.ts</code> (resumable crawl, leases), <code>fetch.ts</code> (HTTP client, user agent, SSRF rules), <code>robots.ts</code>, <code>sitemap.ts</code>, <code>parse.ts</code> (HTML extractor), <code>checks/</code> (the 57 checks), <code>analyze.ts</code> (issues, score, diff, retention), <code>service.ts</code>.</td></tr>
+  <tr><td><code>src/lib/gsc/</code></td><td><code>google.ts</code> (OAuth and Search Console API client), <code>oauth.ts</code> (signed state), <code>connections.ts</code> (encrypted tokens, revocation), <code>import.ts</code> (backfill and daily refresh), <code>data.ts</code>.</td></tr>
+  <tr><td><code>src/lib/reports/</code></td><td>Report data, share-link unlock cookies, schedules and emails, the weekly digest, the badge.</td></tr>
+  <tr><td><code>src/lib/jobs/</code>, <code>src/lib/scheduler.ts</code>, <code>lazy-tick.ts</code></td><td>Background jobs; ticks, lock, cron secret; lazy mode.</td></tr>
+  <tr><td><code>src/lib/crypto.ts</code></td><td>The app secret, AES-256-GCM encryption and HMAC signatures.</td></tr>
+  <tr><td><code>src/badge/</code></td><td>Source of <code>sz-badge.js</code>; bundled by <code>scripts/build-widget.mjs</code> with a 2 KB gzip budget.</td></tr>
+  <tr><td><code>src/app/api/v1</code>, <code>src/lib/api-*.ts</code></td><td>REST API.</td></tr>
+  <tr><td><code>src/app/(dashboard)</code>, <code>src/components/dashboard</code></td><td>The customer dashboard.</td></tr>
+  <tr><td><code>src/app/(site)</code>, <code>src/app/admin</code>, <code>src/app/r</code></td><td>Public site, admin panel, shared reports.</td></tr>
+  <tr><td><code>src/lib/db/migrations.ts</code></td><td>Database schema, indexes and default plans (migrations run automatically).</td></tr>
+  <tr><td><code>src/lib/i18n/messages.ts</code></td><td>Every interface text in English (the source for translations), including the title, explanation and fix of every audit check.</td></tr>
+</table>
+
+<h3 id="custom-provider">Adding a SERP provider</h3>
+<p>A provider is a small adapter that turns one keyword check into API requests and returns the organic results. The interface (<code>src/lib/serp/parse.ts</code> and <code>src/seo/types.ts</code>):</p>
+<pre><code>interface SerpCheckInput {
+  phrase: string; country: string; language: string;   // "US", "en" (Google gl / hl via googleGl() / googleHl())
+  device: "desktop" | "mobile"; location: string;       // "" = whole country
+  depth: 10 | 20 | 50 | 100; domain: string; competitors: string[];
+}
+interface RankProvider {
+  id: string;      // stored in rankings.provider (max 20 characters)
+  name: string;
+  check(input: SerpCheckInput): Promise&lt;ProviderResult&gt;;  // RankResult + { requests: number }
+}
+// Throw new SerpProviderError(message, "config" | "quota" | "network" | "response") for problems.
+// "config" pauses all checks for 30 minutes, "quota" for 1 hour; the others retry the keyword later.</code></pre>
+<ol class="steps">
+  <li>Create <code>src/lib/serp/providers/myserp.ts</code> with <code>createMySerpProvider(options: { apiKey: string; fetch: SerpFetch; timeoutMs?: number }): RankProvider</code>. Use <code>options.fetch</code> (it applies the private-address guard, timeouts and a size cap, and lets tests replay recorded answers). For each page <code>1…pagesFor(input.depth)</code>: request 10 results, turn an unsuccessful answer into an error with <code>httpError("MySERP", status, errorMessage(json, text))</code>, pass the organic results (<code>{ url, title }</code>, in order) to a <code>ResultCollector</code> and stop when <code>collector.done()</code> or a page is empty. Detect SERP features on page 1. Return <code>collector.result(features, requests, credits)</code>. Copy <code>serper.ts</code> as a starting point.</li>
+  <li>In <code>src/lib/serp/index.ts</code> add the id to <code>REAL_PROVIDER_IDS</code>, an entry to <code>PROVIDERS</code> (name, key label and placeholder, website, a short cost note), a case in <code>envKey()</code> (e.g. <code>MYSERP_API_KEY</code>, the name the admin page lists) and in <code>createProvider()</code>.</li>
+  <li>The admin page, the test button, usage and pauses work automatically. Run <code>npm run typecheck</code>, then test the key with <em>Test connection</em>.</li>
+</ol>
+<h3>Adding an audit check</h3>
+<p>Add <code>pageCheck(code, severity, category, test)</code> or <code>siteCheck(…)</code> to the matching list in <code>src/lib/audit/checks/</code> (codes are lower-case snake_case and are stored with the issues), and the texts <code>audit.issue.&lt;code&gt;</code>, <code>audit.issue.&lt;code&gt;.help</code> and <code>audit.issue.&lt;code&gt;.fix</code> in <code>messages.ts</code>. A test returns <code>true</code> or an object with details for affected pages. If the check needs new page data, extract it in <code>src/lib/audit/parse.ts</code> and add it to <code>CrawledPage</code> (<code>src/lib/audit/types.ts</code>). The health score and the reports include new checks automatically.</p>
+<h3>Adding an alert channel or a background job</h3>
+<p><strong>Alert channel:</strong> add the type to <code>CHANNEL_TYPES</code> and <code>ChannelConfigByType</code> (<code>src/seo/types.ts</code>), a case in <code>normalizeChannelConfig</code> and <code>channelProblem</code> (<code>src/seo/normalize.ts</code>), a sender in <code>src/lib/alerts/</code> using <code>describeAlert()</code> and <code>deliver()</code>, a case in <code>sendAlert()</code> (<code>src/lib/alerts/index.ts</code>), and the form in <code>src/components/dashboard/channel-forms.tsx</code> with <code>dash.channels.*</code> texts. <strong>Background job:</strong> implement <code>Job</code> (<code>src/lib/jobs/index.ts</code>), throttle it with <code>isDue()</code> / <code>scheduleNext()</code> from <code>jobs/shared.ts</code>, and add it to <code>JOBS</code>.</p>
+<p>After editing any code always run <code>npm run typecheck</code>, <code>npm run build</code> and restart the app <em>and</em> the worker.</p>
+
+<!-- ───────────────────────────── Demo ───────────────────────────── -->
+<h2 id="demo">Demo mode</h2>
+<p>Set <code>DEMO_MODE=true</code> to make the admin panel <strong>and</strong> the customer dashboard read-only: everything can be viewed, nothing can be saved, and registration is closed. With <code>ADMIN_EMAIL</code> and <code>ADMIN_PASSWORD</code> set, the sign-in page pre-fills that account for visitors, and its password and profile can't be changed. In demo mode:</p>
+<ul>
+  <li>The <strong>Simulated provider is used automatically</strong> when no other provider is chosen, so rankings keep moving without an API key. <em>Test connection</em> only tests the Simulated provider.</li>
+  <li><em>Run jobs now</em>, <em>Send test</em> on alert channels and the progress of running audits still work; starting audits, “Check now” and connecting Google are disabled; the cron URL is hidden in Admin → System.</li>
+</ul>
+<p>Add <code>DEMO_SEED=true</code> to fill an empty database once with sample data:</p>
+<ul>
+  <li>Sample customers with plans and payments (including bank transfers waiting for approval) and contact messages, so the admin panel looks like a busy platform.</li>
+  <li>For the first administrator, three sample projects with <strong>90 days of simulated rankings</strong>:
+    <ul>
+      <li><strong>Northwind Outdoor</strong> – an outdoor gear store with about 60 keywords, competitors, two finished site audits, Search Console demo data and a shared client report;</li>
+      <li><strong>Acme Cloud</strong> – a SaaS product;</li>
+      <li><strong>Café Lumière</strong> – a local business in Paris.</li>
+    </ul></li>
+  <li>The Arabic and Hindi language packs, so visitors can try the language switcher and right-to-left layout.</li>
+</ul>
+<div class="note">Set <code>ADMIN_EMAIL</code>/<code>ADMIN_PASSWORD</code> together with <code>DEMO_SEED</code>: the sample projects are created for the first administrator, and seeding runs only once per database. Keep the <a href="#scheduling">scheduler</a> running so the sample keywords keep getting new (simulated) positions. Our live demo runs exactly like this; its login is <code>demo@searchzen.app</code> / <code>demo12345</code>.</div>
+
+<!-- ───────────────────────────── Update ───────────────────────────── -->
+<h2 id="update">Updating to a new version</h2>
+<ol class="steps">
+  <li>Back up the <code>storage</code> folder (it holds <code>config.json</code> with the app secret) and your database.</li>
+  <li>Replace all files <em>except</em> <code>storage</code> (and your <code>.env</code> file and your edited <code>ecosystem.config.cjs</code>, if any) with the new version.</li>
+  <li>Run <code>npm install</code> and <code>npm run build</code> (this also rebuilds <code>sz-badge.js</code>).</li>
+  <li>Restart the app <strong>and the worker</strong>: <code>pm2 restart all</code>, <code>docker compose up -d --build</code>, or <em>Restart</em> in cPanel.</li>
+</ol>
+<p>Database changes are applied automatically the first time the new version starts. Projects, keywords, history, share links, badge snippets, Google connections and API keys are kept. Running audits continue after the restart.</p>
+
+<!-- ───────────────────────────── Env ───────────────────────────── -->
+<h2 id="env">Environment variables (optional)</h2>
+<p>Not needed for a normal installation. Use them for Docker, Vercel, the worker or read-only hosting; see <code>.env.example</code>. Copy it to <code>.env.local</code> or set the variables in your hosting panel. Variables set by the hosting panel or PM2 win over <code>.env</code> files.</p>
+<table>
+  <tr><th>Variable</th><th>Purpose</th></tr>
+  <tr><td><code>PORT</code>, <code>HOST</code></td><td>Port to listen on (default 3000); address for <code>server.js</code> (default <code>0.0.0.0</code>).</td></tr>
+  <tr><td><code>SITE_URL</code></td><td>Public address of the platform, used when “Site URL” is empty in the admin panel. On Vercel, the production domain is used as a last fallback.</td></tr>
+  <tr><td><code>STORAGE_DIR</code></td><td>Folder for config, the generated app secret, SQLite database and uploads.</td></tr>
+  <tr><td class="wrap"><code>DB_DRIVER</code>, <code>DB_HOST</code>, <code>DB_PORT</code>, <code>DB_NAME</code>, <code>DB_USER</code>, <code>DB_PASSWORD</code>, <code>DB_FILE</code></td><td>Database connection (overrides <code>storage/config.json</code>). <code>DB_DRIVER</code> is <code>mysql</code> or <code>sqlite</code>.</td></tr>
+  <tr><td><code>DATABASE_URL</code></td><td>Alternative to the <code>DB_*</code> variables: <code>mysql://user:password@host:3306/searchzen?ssl=true</code>.</td></tr>
+  <tr><td><code>DB_SSL=true</code></td><td>Connect with TLS (required by most cloud databases).</td></tr>
+  <tr><td><code>APP_INSTALLED=true</code></td><td>Skip the installer when the database is configured with environment variables.</td></tr>
+  <tr><td class="wrap"><code>ADMIN_EMAIL</code>, <code>ADMIN_PASSWORD</code>, <code>ADMIN_NAME</code></td><td>Create or promote an administrator on start-up (no installer needed). The password needs at least 8 characters.</td></tr>
+  <tr><td><code>APP_SECRET</code></td><td>16+ random characters. Encrypts Google Search Console tokens and signs OAuth state and report cookies. <strong>Set it on Vercel and on multi-server setups; never change it afterwards.</strong> Without it a secret is generated in <code>storage/config.json</code> (or the database). See <a href="#gsc-secret">APP_SECRET</a>.</td></tr>
+  <tr><td><code>CRON_SECRET</code></td><td>Secret for the cron URL and the worker. Without it, a random secret is stored in the database and shown in Admin → System. Vercel Cron sends it automatically. <strong>Required with <code>ecosystem.config.cjs</code> and <code>docker-compose.yml</code></strong>. At least 12 random characters (e.g. <code>openssl rand -hex 24</code>); short values and the example value are ignored.</td></tr>
+  <tr><td class="wrap"><code>WORKER_URL</code>, <code>WORKER_INTERVAL_SEC</code></td><td>Worker only: address of the app (default <code>SITE_URL</code>, else <code>http://localhost:$PORT</code>) and seconds between ticks (default 15, minimum 5).</td></tr>
+  <tr><td class="wrap"><code>SERPER_API_KEY</code>, <code>SERPAPI_API_KEY</code>, <code>DATAFORSEO_LOGIN</code> + <code>DATAFORSEO_PASSWORD</code>, <code>VALUESERP_API_KEY</code></td><td>SERP provider keys. They win over keys saved in Admin → Settings → Rank tracking.</td></tr>
+  <tr><td><code>SERP_PROVIDER</code></td><td><code>serper</code>, <code>serpapi</code>, <code>dataforseo</code>, <code>valueserp</code> or <code>simulated</code>: used when no provider is chosen in the admin panel.</td></tr>
+  <tr><td><code>TRUSTED_PROXY_HOPS</code></td><td>Number of reverse proxies in front of the app that add <code>X-Forwarded-For</code> (default 1: Nginx, Apache/Passenger on cPanel, Vercel). Use <strong>2</strong> for Cloudflare in front of Nginx.</td></tr>
+  <tr><td><code>ALLOW_PRIVATE_WEBHOOKS=1</code></td><td>Let webhook alert channels post to private/internal addresses. Only for single-company installations.</td></tr>
+  <tr><td><code>DEMO_MODE=true</code></td><td>Read-only admin panel and dashboard (see <a href="#demo">Demo mode</a>).</td></tr>
+  <tr><td><code>DEMO_SEED=true</code></td><td>Fill an empty database with sample data once.</td></tr>
+  <tr><td><code>NEXT_SERVER_ACTIONS_ENCRYPTION_KEY</code></td><td>Optional. Keeps form actions working across several servers or rebuilds.</td></tr>
+  <tr><td><code>NEXT_DIST_DIR</code></td><td>Development only: build folder (default <code>.next</code>), to run a second dev server from the same folder.</td></tr>
+</table>
+<div class="warn">
+  <p><strong>Testing only – never set these on a real installation:</strong></p>
+  <ul>
+    <li><code>ALLOW_PRIVATE_CRAWL=true</code> lets the site audit crawler fetch private and local addresses and non-standard ports, for automated tests against a local test site. On a public platform any customer could make your server crawl your internal network.</li>
+    <li><code>GOOGLE_OAUTH_BASE</code> and <code>GSC_API_BASE</code> point Google sign-in and the Search Console API at a local mock server for automated tests. In production they would send your customers' sign-ins to the wrong server.</li>
+  </ul>
+</div>
+
+<!-- ───────────────────────────── Troubleshooting ───────────────────────────── -->
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3>No rankings (keywords stay “Pending” or don't change)</h3>
+<table>
+  <tr><th>What you see</th><th>Cause and solution</th></tr>
+  <tr><td>“Rank checks aren't set up on this site yet” / “No rank data provider is selected”</td><td>No provider is chosen. Open Admin → Settings → Rank tracking, choose a provider, paste its key and save (see <a href="#serp-keys">Where to paste keys</a>).</td></tr>
+  <tr><td>“The selected rank data provider has no API key”</td><td>Paste the key (or set the environment variable) and save.</td></tr>
+  <tr><td>“The Simulated provider is selected but turned off”</td><td>Switch on <em>Allow the Simulated provider</em>, or better, choose a real provider.</td></tr>
+  <tr><td>“Rank checks are paused until …”</td><td>The provider rejected the key (30-minute pause) or the credits/balance are used up (1-hour pause). The admin page shows the provider's message. Fix the key or top up, then click <em>Resume now</em> or save the settings. Use <em>Test connection</em> to confirm.</td></tr>
+  <tr><td>Keywords stay “Pending” although a provider works</td><td>Background jobs don't run (Admin → System → Scheduler shows <em>Stalled</em> or <em>Never ran</em>): add the cron URL or start the worker. “Keywords due now” in Rank tracking should go down within minutes.</td></tr>
+  <tr><td>Positions change only once a week</td><td>The customer's plan allows weekly checks only (Plans → Rank checks), or the project is set to weekly.</td></tr>
+  <tr><td>“Keywords due now” keeps growing</td><td>Not enough checks per hour: use the worker, tick every minute, raise <em>Checks per run</em> / <em>Parallel requests</em> (within your provider's rate limit).</td></tr>
+  <tr><td>A keyword shows “The last check failed: …”</td><td>A problem with that keyword only, often an unknown location name (use <code>City,Region,Country</code>) or a temporary provider error. It is retried after 15 minutes, 1 hour, 4 hours, then every 12 hours.</td></tr>
+  <tr><td>A keyword is not checked at all</td><td>It is paused (“Paused: over the plan's keyword limit” after a downgrade), its project is paused, or the owner is banned.</td></tr>
+  <tr><td>Shows “20+” although the site ranks</td><td>It ranks below the configured depth (20 by default). Raise the depth (costs more), or the result belongs to another domain (check the project's domain).</td></tr>
+  <tr><td>Mobile positions equal desktop positions</td><td>Serper.dev only returns desktop results. Use SerpApi, DataForSEO or ValueSERP for mobile tracking.</td></tr>
+  <tr><td>“Check now” says rank checks are not set up / paused (API: <code>409</code>)</td><td>See the first rows. “Skipped” keywords were checked in the last 10 minutes or are paused.</td></tr>
+</table>
+
+<h3>Site audit stuck or failing</h3>
+<table>
+  <tr><th>What you see</th><th>Cause and solution</th></tr>
+  <tr><td>Stays at “Queued” / “Waiting to start…”</td><td>No background jobs run. Add the cron URL or start the worker. (Keeping the audit page open also moves it forward.)</td></tr>
+  <tr><td>Progress stops for a minute, then continues</td><td>Normal: a tick that was stopped (server restart, timeout) holds a 90-second lock on the audit; the next tick takes over and continues where it stopped. The scheduler lock itself expires about 30 seconds after a tick's budget.</td></tr>
+  <tr><td>Very slow</td><td>A pause between requests or a robots.txt <code>Crawl-delay</code> applies (pages are then fetched one at a time), the site answers slowly, or only lazy mode runs. Each audit gets at most 20 seconds per tick, shared with other running audits.</td></tr>
+  <tr><td>Failed: “robots.txt does not allow SearchzenBot to crawl the start page.”</td><td>The site's robots.txt blocks <code>SearchzenBot</code> or everything (<code>Disallow: /</code>). The site owner can allow it: <code>User-agent: SearchzenBot</code> / <code>Allow: /</code>. Choosing the <em>Desktop browser</em> identity doesn't change this: the rules for SearchzenBot are always followed.</td></tr>
+  <tr><td>Failed: “Could not reach https://… : Blocked: private or local address.”, “Private and local addresses are not crawled.” or “Only standard web ports (80, 443, 8080, 8443) are crawled.”</td><td>The domain resolves to a private or local IP address (e.g. an internal server, <code>localhost</code>, a development machine) or uses another port. The crawler only audits public websites, to protect your network (SSRF protection). Audit the public address of the site.</td></tr>
+  <tr><td>Failed: “Could not reach … DNS lookup failed / Connection refused / Timed out”</td><td>The site is down, the domain is wrong, or a firewall blocks your server's IP address. Ask the site owner to allow your server or the <code>SearchzenBot</code> user agent.</td></tr>
+  <tr><td>Failed: “The start page redirects to another site”</td><td>The domain redirects to a different domain. Change the project's domain to the final one.</td></tr>
+  <tr><td>Many 403 / 429 pages</td><td>A firewall or bot protection (Cloudflare, Sucuri…) blocks the crawler. Add a pause between requests, try the <em>Desktop browser</em> identity, or ask the site owner to allow your server.</td></tr>
+  <tr><td>Fewer pages than expected</td><td>The plan's or project's page limit was reached, include/exclude paths, robots.txt rules, pages deeper than 10 clicks, or pages only reachable through JavaScript (the crawler doesn't run JavaScript; add them to the XML sitemap).</td></tr>
+  <tr><td>“An audit of this project is already running.”</td><td>Only one audit per project runs at a time. Wait, or cancel it on the audit page.</td></tr>
+  <tr><td>“You have used all the site audits your plan includes this month.”</td><td>The plan's audits per month are used (scheduled ones count too). Wait for the 1st or upgrade.</td></tr>
+  <tr><td>“The audit took more than 24 hours and was stopped.”</td><td>Background jobs ran too rarely for the site size. Use the worker or a cron job every minute.</td></tr>
+</table>
+
+<h3>Google Search Console errors</h3>
+<table>
+  <tr><th>What you see</th><th>Cause and solution</th></tr>
+  <tr><td>Google shows <strong>Error 400: redirect_uri_mismatch</strong></td><td>The redirect URI in Google Cloud doesn't match <code>{Site URL}/api/gsc/callback</code> exactly. Copy it from Admin → Settings → Google; check <code>https</code>, <code>www</code> and that the Site URL is your public address (not <code>localhost</code>).</td></tr>
+  <tr><td>Google shows <strong>Error 403: access_denied</strong> (“has not completed the Google verification process”)</td><td>The app is in <em>Testing</em> and the Google account isn't a test user. Add it under Audience → Test users, or publish the app (see <a href="#gsc-verify">Testing vs. production</a>).</td></tr>
+  <tr><td>“Google hasn't verified this app” warning</td><td>Expected for published, unverified apps: click <em>Advanced → Go to …</em>. Submit the app for verification to remove it.</td></tr>
+  <tr><td>“Google access was not granted.”</td><td>The user cancelled the consent screen or declined access. Try again.</td></tr>
+  <tr><td>“Allow "View Search Console data" on Google's consent screen”</td><td>The user unticked the Search Console permission. Connect again and keep it ticked.</td></tr>
+  <tr><td>“Google did not return offline access.”</td><td>Remove the app from the Google account's third-party access (<a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>), then connect again.</td></tr>
+  <tr><td>“Google rejected the OAuth client.”</td><td>Wrong client ID or secret, a deleted client, or the Search Console API isn't enabled in the project.</td></tr>
+  <tr><td>“The sign-in link expired or was opened in another browser.”</td><td>The flow took longer than 15 minutes, or it was started in one browser and finished in another. Start again.</td></tr>
+  <tr><td>“Search Console isn't set up yet”</td><td>No OAuth client in Admin → Settings → Google.</td></tr>
+  <tr><td>Property list empty / property not found / “This Google account can't read that property.”</td><td>The Google account has no verified Search Console property for this site, or lost access to it. Add and verify the site in Search Console (a <em>Domain property</em> covers every subdomain and protocol), or connect the Google account that owns it.</td></tr>
+  <tr><td><em>Disconnected</em>: “Google no longer accepts the access of …”</td><td>The access was revoked: the user removed it in their Google account, changed their password, didn't use it for six months, or the app is in <em>Testing</em> (tokens expire after 7 days). Publish the app and click <em>Reconnect</em>.</td></tr>
+  <tr><td>“The stored Google token can't be read (the app secret changed).”</td><td>The app secret changed (new <code>APP_SECRET</code>, lost <code>storage/config.json</code>, or several servers with different secrets). Restore the old secret, or set one <code>APP_SECRET</code> everywhere and let customers reconnect.</td></tr>
+  <tr><td>No data for the last two days</td><td>Normal: Search Console data is about two days behind.</td></tr>
+</table>
+
+<h3>Emails are not sent</h3>
+<table>
+  <tr><th>Problem</th><th>Solution</th></tr>
+  <tr><td>No emails at all</td><td>Configure SMTP, switch on <em>Send emails</em> and use Admin → System → Email test. Check the spam folder and set up SPF/DKIM for the sender domain. Port 587 = SSL off, 465 = SSL on. Some hosts block outgoing SMTP: ask your host or use an email API provider's SMTP relay.</td></tr>
+  <tr><td>No scheduled reports</td><td>They need SMTP and the scheduler; they are sent on Mondays / the 1st at 07:00 UTC. Without SMTP the run is logged as failed in the project's alert history and the schedule moves on. Use <em>Send a test to me</em> to check.</td></tr>
+  <tr><td>No weekly digest</td><td>Needs SMTP, the scheduler and <em>Send the weekly digest email</em> in Settings → SEO tools; it goes out from Monday 07:00 UTC to owners of active projects who didn't turn it off.</td></tr>
+  <tr><td>No email alerts</td><td>The project must have the email channel selected in Project settings → Alerts, and a rule must fire. Use <em>Send test</em> on the channel.</td></tr>
+  <tr><td>Links in emails point to <code>localhost:3000</code></td><td>Set the Site URL in Settings → General.</td></tr>
+</table>
+
+<h3>Badge, server and other problems</h3>
+<table>
+  <tr><th>Problem</th><th>Solution</th></tr>
+  <tr><td>The badge shows “–” or nothing</td><td>Sharing is off or the link was replaced (the badge uses the share token), no audit has finished yet, or the website's Content Security Policy blocks your platform: allow it in <code>script-src</code> and <code>connect-src</code> (script badge) or <code>img-src</code> (image badge). <code>/sz-badge.js</code> returns 404: run <code>npm run build</code> and restart.</td></tr>
+  <tr><td>Alert channel test fails</td><td>Slack 403/404: the webhook was revoked. Discord 401/404: the webhook was deleted. Teams: use a Workflows URL. Telegram: check the token and chat id, press <em>Start</em> in the bot chat. Webhook: private addresses need <code>ALLOW_PRIVATE_WEBHOOKS=1</code>; redirects are not followed.</td></tr>
+  <tr><td>Background jobs don't run</td><td>Open the cron URL in a browser. <code>401</code> = wrong secret (copy the URL again; after <em>New secret</em> the old URL stops working). <code>429</code> = called too often from one IP. A redirect to <code>/login</code> or a hosting page means the URL is wrong. Worker log <code>401</code>: the worker's <code>CRON_SECRET</code> doesn't match the app's or is shorter than 12 characters. A job shows “failed”: read the app's log for <code>[searchzen]</code> lines.</td></tr>
+  <tr><td>Blank page or “502 Bad Gateway”</td><td>The app isn't running. Check that <code>npm run build</code> finished, then restart (cPanel: <em>Restart</em>; VPS: <code>pm2 restart searchzen</code>; logs: <code>pm2 logs searchzen</code>).</td></tr>
+  <tr><td>Build fails with “[badge] build failed” or “exceeds the 2048 B budget”</td><td>Dev dependencies (esbuild, Tailwind, TypeScript) are missing: run <code>npm install</code> (not <code>--omit=dev</code>) before building. The budget message only appears if you changed the badge and it grew above 2 KB gzipped.</td></tr>
+  <tr><td>“storage folder is writable” fails</td><td>Give the app user write access: <code>chmod -R 775 storage</code> (and <code>chown</code> it to the user running Node.js).</td></tr>
+  <tr><td>Database connection fails</td><td>Check host (usually <code>localhost</code> or <code>127.0.0.1</code>), port 3306, and that the user has all privileges on the database. On cPanel the database and username include your account prefix, e.g. <code>myacc_searchzen</code>. Cloud databases need <em>Use SSL</em>.</td></tr>
+  <tr><td>SQLite option fails</td><td>SQLite needs Node.js 22.13+. Choose a newer Node.js version in your hosting panel or use MySQL.</td></tr>
+  <tr><td>Can't sign in after installing on HTTPS behind a proxy</td><td>Make sure the proxy sends <code>X-Forwarded-Proto</code> and <code>Host</code> headers (see the Nginx example).</td></tr>
+  <tr><td>Users get “Too many requests” on sign-in</td><td>Behind Cloudflare + Nginx set <code>TRUSTED_PROXY_HOPS=2</code>, so each visitor has their own limit.</td></tr>
+  <tr><td>Plan payments are not activated</td><td>For Stripe, check the endpoint <code>/api/payments/stripe/webhook</code> and its signing secret in Settings → Payments, and the delivery log in Stripe.</td></tr>
+  <tr><td>I forgot the admin password</td><td>Use “Forgot password” (needs SMTP). Otherwise ask another administrator, or delete <code>storage/installed.lock</code>, restart, and run the installer again with the same database and admin email: the installer sets the new password on the existing account and keeps all data.</td></tr>
+</table>
+
+<!-- ───────────────────────────── Credits ───────────────────────────── -->
+<h2 id="credits">Credits</h2>
+<p>Searchzen uses these open-source projects (from <code>package.json</code>). Their licences allow commercial use.</p>
+<table>
+  <tr><th>Project</th><th>Licence</th></tr>
+  <tr><td>Next.js, React, React DOM</td><td>MIT</td></tr>
+  <tr><td>Tailwind CSS, @tailwindcss/turbopack</td><td>MIT</td></tr>
+  <tr><td>Kysely (database queries), mysql2, zod, marked (Markdown for pages and blog), undici (HTTP client of the crawler and SERP providers), stripe-node, server-only</td><td>MIT</td></tr>
+  <tr><td>Nodemailer</td><td>MIT-0</td></tr>
+  <tr><td>Lucide icons (lucide-react)</td><td>ISC</td></tr>
+  <tr><td>esbuild (builds the badge script; not included in it)</td><td>MIT</td></tr>
+  <tr><td>TypeScript, ESLint, eslint-config-next, @types packages (development only)</td><td>Apache 2.0, MIT, MIT, MIT</td></tr>
+  <tr><td>Bricolage Grotesque, Instrument Sans, JetBrains Mono fonts</td><td>SIL Open Font License 1.1 (licence files in <code>src/fonts</code>)</td></tr>
+</table>
+<p>The site audit uses Searchzen's own small HTML extractor (<code>src/lib/audit/parse.ts</code>), robots.txt parser and sitemap reader: <strong>no HTML parser library</strong> (such as cheerio, jsdom or parse5) and no headless browser is bundled. The badge script <code>sz-badge.js</code> contains only Searchzen's own code. Google, Google Search Console, Serper.dev, SerpApi, DataForSEO, ValueSERP, Stripe, PayPal and other names are trademarks of their owners and are used only to describe compatibility.</p>
+
+<!-- ───────────────────────────── Changelog ───────────────────────────── -->
+<h2 id="changelog">Changelog</h2>
+<div class="card"><strong>1.0.0</strong> – 19 October 2026 – Initial release.
+<ul>
+  <li>Rank tracking by country, language, city or region and device, daily or weekly, depth 10/20/50/100; tags, target URLs, CSV import and export; position history, best and first positions, ranking-URL changes, latest results page; visibility score, average position, top 3/10/100 and movers.</li>
+  <li>SERP providers Serper.dev, SerpApi, DataForSEO and ValueSERP with environment-variable keys, test connection, per-day usage, run limits and automatic pauses on configuration or quota errors; Simulated provider for demos and testing.</li>
+  <li>Up to 5 competitors per project with share of voice and visibility over time; SERP features (featured snippet, local pack, AI overview, People also ask, images, videos, top stories, shopping, sitelinks, knowledge panel).</li>
+  <li>Rank alert rules (enters/leaves top 3/10/100, position change, target URL lost) and audit alerts by email, Slack, Discord, Microsoft Teams, Telegram and signed webhook.</li>
+  <li>Resumable site audit crawler (robots.txt, crawl-delay, sitemaps, include/exclude paths, page limits, SSRF protection) with 57 checks, health score, new and fixed issues, history, CSV exports and scheduled audits.</li>
+  <li>Google Search Console integration (OAuth, encrypted tokens, 90-day history, daily refresh, top queries and pages, track a query as a keyword).</li>
+  <li>Client reports with share links, passwords, print to PDF, weekly/monthly report emails and white-label branding; SEO health badge (script and SVG); weekly digest email.</li>
+  <li>REST API for projects, keywords, history, check now and audits.</li>
+  <li>Background jobs with lazy mode, cron URL and a 15-second worker.</li>
+  <li>Plans with project, keyword, check frequency, audit page and monthly audit limits, Search Console, API and white-label switches; Stripe, PayPal, Razorpay and bank transfer; admin panel, blog, content pages, multi-language with RTL, web installer for MySQL or SQLite, PM2 and Docker configurations, demo mode with sample data.</li>
+</ul></div>
+
+<!-- ───────────────────────────── Support ───────────────────────────── -->
+<h2 id="support">Support</h2>
+<p>If something isn't working, please read <a href="#troubleshooting">Troubleshooting</a> first, and check Admin → System → Scheduler and Admin → Settings → Rank tracking. For further help, open an issue on <a href="https://github.com/epifive/searchzen/issues">GitHub</a>. Please include your hosting type, Node.js version, database (MySQL or SQLite), how you run background jobs (lazy, cron, worker), your SERP provider and the error shown by <em>Test connection</em>, the audit's error message or the Google error page, and any error from the browser console or the server log. Bug reports and pull requests are welcome. SERP provider costs are billed by the provider you choose.</p>
+<p>Need Searchzen hosted for you, installed on your own server, or customised? Contact <a href="https://www.epifive.com/services">EpiFive</a>.</p>
+</main>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+  @font-face { font-family: "Bricolage"; src: url("../../app/src/fonts/bricolage-grotesque.woff2") format("woff2"); font-weight: 200 800; }
+  @font-face { font-family: "Instrument"; src: url("../../app/src/fonts/instrument-sans.woff2") format("woff2"); font-weight: 400 700; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1440px; height: 1000px; overflow: hidden; }
+  body { font-family: "Instrument", sans-serif; color: #fff; padding: 46px 70px;
+    background-color: #0b5d73;
+    background-image:
+      radial-gradient(820px 480px at 94% -14%, rgba(251, 191, 36, .2), transparent 60%),
+      radial-gradient(760px 560px at -6% 112%, rgba(34, 211, 238, .35), transparent 60%),
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(135deg, #0e7490, #083344);
+    background-size: auto, auto, 24px 24px, 24px 24px, auto; }
+  .head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 28px; }
+  h1 { font-family: "Bricolage"; font-size: 44px; letter-spacing: -.025em; margin: 0; font-weight: 800; }
+  h1 em { font-style: normal; color: #fbbf24; }
+  .head p { margin: 8px 0 0; font-size: 18px; color: rgba(255,255,255,.86); }
+  .chips { display: flex; gap: 8px; }
+  .chips span { font-size: 14px; font-weight: 600; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28); padding: 5px 12px; border-radius: 999px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px 30px; }
+  .win { border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 24px 50px -16px rgba(0, 20, 30, .55); }
+  .bar { height: 26px; background: #eef5f7; display: flex; align-items: center; gap: 6px; padding: 0 11px; }
+  .bar i { width: 8px; height: 8px; border-radius: 50%; background: #d3e2e7; }
+  .bar span { margin-left: auto; font-size: 11.5px; font-weight: 700; color: #0e7490; }
+  .crop { height: 352px; overflow: hidden; }
+  .crop img { width: 100%; display: block; }
+</style></head>
+<body>
+  <div class="head">
+    <div>
+      <h1>Every screen in <em>your customers' language</em></h1>
+      <p>Translate the site, the dashboard, reports and emails. Right-to-left layouts flip automatically.</p>
+    </div>
+    <div class="chips"><span>Arabic pack</span><span>Hindi pack</span><span>RTL</span></div>
+  </div>
+  <div class="grid">
+    <div class="win"><div class="bar"><i></i><i></i><i></i><span>Arabic, landing page</span></div><div class="crop"><img src="../raw/l13-home-ar.png"></div></div>
+    <div class="win"><div class="bar"><i></i><i></i><i></i><span>Hindi, landing page</span></div><div class="crop"><img src="../raw/l12-home-hi.png"></div></div>
+    <div class="win"><div class="bar"><i></i><i></i><i></i><span>Arabic, project overview</span></div><div class="crop"><img src="../raw/r1-overview-ar.png"></div></div>
+    <div class="win"><div class="bar"><i></i><i></i><i></i><span>Hindi, rankings</span></div><div class="crop"><img src="../raw/r4-rankings-hi.png"></div></div>
+  </div>
+</body></html>
