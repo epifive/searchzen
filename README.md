@@ -1,5 +1,14 @@
 # Searchzen
 
+<!-- epifive:header -->
+> Track Google rankings, audit sites for technical SEO problems and send white-label client reports from your own server.
+
+[![Licence: MIT](https://img.shields.io/badge/licence-MIT-0a7560?style=flat-square)](LICENSE)
+[![Latest release](https://img.shields.io/github/v/release/epifive/searchzen?style=flat-square&label=release&color=4f5bd5)](https://github.com/epifive/searchzen/releases/latest)
+[![GitHub stars](https://img.shields.io/github/stars/epifive/searchzen?style=flat-square&color=b5791b)](https://github.com/epifive/searchzen/stargazers)
+
+**[Docs & guide on epifive.com](https://www.epifive.com/blog/searchzen-self-hosted-seo-rank-tracker?utm_source=github&utm_medium=readme&utm_campaign=searchzen)** · **[Live demo](https://searchzen-demo.vercel.app)** · **[Download the latest release](https://github.com/epifive/searchzen/releases/latest)**
+
 **Open-source SEO rank tracker, site audit and client reporting — as a self-hosted SaaS.**
 Customers track their Google positions, crawl their websites for technical SEO problems, connect
 Google Search Console and share white-label reports with their clients. Built with Next.js 16,
@@ -89,3 +98,7 @@ Bug reports and pull requests are welcome — please open an
 ## License
 
 [MIT](LICENSE) © 2026 EpiFive
+
+---
+
+<p align="center">Made by <b>EpiFive</b> — <a href="https://www.epifive.com/?utm_source=github&utm_medium=readme&utm_campaign=searchzen">www.epifive.com</a> · <a href="https://www.epifive.com/open-source?utm_source=github&utm_medium=readme&utm_campaign=searchzen">more open-source projects</a></p>
